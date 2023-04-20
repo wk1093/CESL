@@ -6,11 +6,11 @@
  - String Utilities (str.h)
 
 ## WIP
- - Basic List Encapsulation (list.h)
- - Memory Allocation Utilities (mem.h)
+ - Serialization/Deserialization Utilities (serial.h)
 
 ## Half done, but I don't want to work on it rn
  - IO/File Utilities (io.h)
+ - Basic List Encapsulation (list.h)
 
 ## Planned
  - Date/Time Utilities (time.h)
@@ -21,7 +21,6 @@
  - Networking Utilities (net.h)
  - Cryptography/Security Utilities (crypt.h)
  - Compression/Decompression Utilities (compress.h)
- - Serialization/Deserialization Utilities (serialize.h)
  - Command Line Argument Parsing Utilities (argparse.h)
 
 > Graphics and GUI go together with window.h, and can be used together
