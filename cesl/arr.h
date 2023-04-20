@@ -645,7 +645,7 @@ void pushCharArray(struct CharArray *t, char i) {
 }
 char popCharArray(struct CharArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -654,7 +654,7 @@ char popCharArray(struct CharArray *t) {
 }
 char getCharArray(struct CharArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -662,7 +662,7 @@ char getCharArray(struct CharArray *t, int i) {
 }
 void setCharArray(struct CharArray *t, int i, char v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -675,7 +675,7 @@ void delCharArray(struct CharArray *t) {
 }
 char removeCharArray(struct CharArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -723,7 +723,7 @@ void pushUCharArray(struct UCharArray *t, unsigned char i) {
 }
 unsigned char popUCharArray(struct UCharArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -732,7 +732,7 @@ unsigned char popUCharArray(struct UCharArray *t) {
 }
 unsigned char getUCharArray(struct UCharArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -740,7 +740,7 @@ unsigned char getUCharArray(struct UCharArray *t, int i) {
 }
 void setUCharArray(struct UCharArray *t, int i, unsigned char v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -753,7 +753,7 @@ void delUCharArray(struct UCharArray *t) {
 }
 unsigned char removeUCharArray(struct UCharArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -802,7 +802,7 @@ void pushShortArray(struct ShortArray *t, short i) {
 }
 short popShortArray(struct ShortArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -811,7 +811,7 @@ short popShortArray(struct ShortArray *t) {
 }
 short getShortArray(struct ShortArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -819,7 +819,7 @@ short getShortArray(struct ShortArray *t, int i) {
 }
 void setShortArray(struct ShortArray *t, int i, short v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -832,7 +832,7 @@ void delShortArray(struct ShortArray *t) {
 }
 short removeShortArray(struct ShortArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -881,7 +881,7 @@ void pushUShortArray(struct UShortArray *t, unsigned short i) {
 }
 unsigned short popUShortArray(struct UShortArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -890,7 +890,7 @@ unsigned short popUShortArray(struct UShortArray *t) {
 }
 unsigned short getUShortArray(struct UShortArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -898,7 +898,7 @@ unsigned short getUShortArray(struct UShortArray *t, int i) {
 }
 void setUShortArray(struct UShortArray *t, int i, unsigned short v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -911,7 +911,7 @@ void delUShortArray(struct UShortArray *t) {
 }
 unsigned short removeUShortArray(struct UShortArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -960,7 +960,7 @@ void pushIntArray(struct IntArray *t, int i) {
 }
 int popIntArray(struct IntArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -969,7 +969,7 @@ int popIntArray(struct IntArray *t) {
 }
 int getIntArray(struct IntArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -977,7 +977,7 @@ int getIntArray(struct IntArray *t, int i) {
 }
 void setIntArray(struct IntArray *t, int i, int v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -990,7 +990,7 @@ void delIntArray(struct IntArray *t) {
 }
 int removeIntArray(struct IntArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1038,7 +1038,7 @@ void pushUIntArray(struct UIntArray *t, unsigned int i) {
 }
 unsigned int popUIntArray(struct UIntArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1047,7 +1047,7 @@ unsigned int popUIntArray(struct UIntArray *t) {
 }
 unsigned int getUIntArray(struct UIntArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1055,7 +1055,7 @@ unsigned int getUIntArray(struct UIntArray *t, int i) {
 }
 void setUIntArray(struct UIntArray *t, int i, unsigned int v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1068,7 +1068,7 @@ void delUIntArray(struct UIntArray *t) {
 }
 unsigned int removeUIntArray(struct UIntArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1116,7 +1116,7 @@ void pushLongArray(struct LongArray *t, long i) {
 }
 long popLongArray(struct LongArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1125,7 +1125,7 @@ long popLongArray(struct LongArray *t) {
 }
 long getLongArray(struct LongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1133,7 +1133,7 @@ long getLongArray(struct LongArray *t, int i) {
 }
 void setLongArray(struct LongArray *t, int i, long v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1146,7 +1146,7 @@ void delLongArray(struct LongArray *t) {
 }
 long removeLongArray(struct LongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1194,7 +1194,7 @@ void pushULongArray(struct ULongArray *t, unsigned long i) {
 }
 unsigned long popULongArray(struct ULongArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1203,7 +1203,7 @@ unsigned long popULongArray(struct ULongArray *t) {
 }
 unsigned long getULongArray(struct ULongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1211,7 +1211,7 @@ unsigned long getULongArray(struct ULongArray *t, int i) {
 }
 void setULongArray(struct ULongArray *t, int i, unsigned long v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1224,7 +1224,7 @@ void delULongArray(struct ULongArray *t) {
 }
 unsigned long removeULongArray(struct ULongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1274,7 +1274,7 @@ void pushLongLongArray(struct LongLongArray *t, long long i) {
 }
 long long popLongLongArray(struct LongLongArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1283,7 +1283,7 @@ long long popLongLongArray(struct LongLongArray *t) {
 }
 long long getLongLongArray(struct LongLongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1291,7 +1291,7 @@ long long getLongLongArray(struct LongLongArray *t, int i) {
 }
 void setLongLongArray(struct LongLongArray *t, int i, long long v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1304,7 +1304,7 @@ void delLongLongArray(struct LongLongArray *t) {
 }
 long long removeLongLongArray(struct LongLongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1353,7 +1353,7 @@ void pushULongLongArray(struct ULongLongArray *t, unsigned long long i) {
 }
 unsigned long long popULongLongArray(struct ULongLongArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1362,7 +1362,7 @@ unsigned long long popULongLongArray(struct ULongLongArray *t) {
 }
 unsigned long long getULongLongArray(struct ULongLongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1370,7 +1370,7 @@ unsigned long long getULongLongArray(struct ULongLongArray *t, int i) {
 }
 void setULongLongArray(struct ULongLongArray *t, int i, unsigned long long v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1383,7 +1383,7 @@ void delULongLongArray(struct ULongLongArray *t) {
 }
 unsigned long long removeULongLongArray(struct ULongLongArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 99, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1433,7 +1433,7 @@ void pushFloatArray(struct FloatArray *t, float i) {
 }
 float popFloatArray(struct FloatArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 100, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1442,7 +1442,7 @@ float popFloatArray(struct FloatArray *t) {
 }
 float getFloatArray(struct FloatArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 100, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1450,7 +1450,7 @@ float getFloatArray(struct FloatArray *t, int i) {
 }
 void setFloatArray(struct FloatArray *t, int i, float v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 100, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1463,7 +1463,7 @@ void delFloatArray(struct FloatArray *t) {
 }
 float removeFloatArray(struct FloatArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 100, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1511,7 +1511,7 @@ void pushDoubleArray(struct DoubleArray *t, double i) {
 }
 double popDoubleArray(struct DoubleArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1520,7 +1520,7 @@ double popDoubleArray(struct DoubleArray *t) {
 }
 double getDoubleArray(struct DoubleArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1528,7 +1528,7 @@ double getDoubleArray(struct DoubleArray *t, int i) {
 }
 void setDoubleArray(struct DoubleArray *t, int i, double v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1541,7 +1541,7 @@ void delDoubleArray(struct DoubleArray *t) {
 }
 double removeDoubleArray(struct DoubleArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 101, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1590,7 +1590,7 @@ void pushLongDoubleArray(struct LongDoubleArray *t, long double i) {
 }
 long double popLongDoubleArray(struct LongDoubleArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1599,7 +1599,7 @@ long double popLongDoubleArray(struct LongDoubleArray *t) {
 }
 long double getLongDoubleArray(struct LongDoubleArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1607,7 +1607,7 @@ long double getLongDoubleArray(struct LongDoubleArray *t, int i) {
 }
 void setLongDoubleArray(struct LongDoubleArray *t, int i, long double v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1620,7 +1620,7 @@ void delLongDoubleArray(struct LongDoubleArray *t) {
 }
 long double removeLongDoubleArray(struct LongDoubleArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 102, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1669,7 +1669,7 @@ void pushBoolArray(struct BoolArray *t, bool i) {
 }
 bool popBoolArray(struct BoolArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1678,7 +1678,7 @@ bool popBoolArray(struct BoolArray *t) {
 }
 bool getBoolArray(struct BoolArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1686,7 +1686,7 @@ bool getBoolArray(struct BoolArray *t, int i) {
 }
 void setBoolArray(struct BoolArray *t, int i, bool v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1699,7 +1699,7 @@ void delBoolArray(struct BoolArray *t) {
 }
 bool removeBoolArray(struct BoolArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1747,7 +1747,7 @@ void pushStringArray(struct StringArray *t, char *i) {
 }
 char *popStringArray(struct StringArray *t) {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1756,7 +1756,7 @@ char *popStringArray(struct StringArray *t) {
 }
 char *getStringArray(struct StringArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1764,7 +1764,7 @@ char *getStringArray(struct StringArray *t, int i) {
 }
 void setStringArray(struct StringArray *t, int i, char *v) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1777,7 +1777,7 @@ void delStringArray(struct StringArray *t) {
 }
 char *removeStringArray(struct StringArray *t, int i) {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }

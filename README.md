@@ -6,10 +6,13 @@
  - String Utilities (str.h)
 
 ## WIP
+ - Basic List Encapsulation (list.h)
+ - Memory Allocation Utilities (mem.h)
+
+## Half done, but I don't want to work on it rn
  - IO/File Utilities (io.h)
 
 ## Planned
- - Memory Allocation Utilities (mem.h)
  - Date/Time Utilities (time.h)
  - Regular Expression Utilities (regex.h)
  - Math Functions (math.h)

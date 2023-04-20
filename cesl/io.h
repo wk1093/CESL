@@ -1,16 +1,8 @@
+#include <Stdbool.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-int fileexists(const char *filename) {
-    FILE *file;
-    if ((file = fopen(filename, "r+")) != NULL) {
-        fclose(file);
-        return 1;
-    }
-    return 0;
-}
 
 void combine_path(char *destination, const char *path1, const char *path2,
                   int size) {
@@ -84,4 +76,13 @@ void get_file_name_without_extension(char *destination, const char *path,
         last_char++;
     strncpy(destination, file_name, last_char - file_name);
     destination[last_char - file_name] = '\0';
+}
+
+bool file_exists(const char *filename) {
+    FILE *file;
+    if ((file = fopen(filename, "r+")) != NULL) {
+        fclose(file);
+        return true;
+    }
+    return false;
 }
