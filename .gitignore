@@ -1,2 +1,6 @@
 /.vscode
 /run.bat
+**/__pycache__
+/src
+/core
+/main.c
