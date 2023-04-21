@@ -1,3 +1,8 @@
+#ifdef CESL_IMPL
+#define ceslf(type, name, args, body) type name args body
+#else
+#define ceslf(type, name, args, body) type name args;
+#endif
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -15,47 +20,47 @@ struct I8Array {
     int8_t (*remove)(struct I8Array *, int);
     struct I8Array *(*copy)(struct I8Array *);
 };
-void pushI8Array(struct I8Array *t, int8_t i) {
+ceslf(void, pushI8Array, (struct I8Array * t, int8_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (int8_t *)realloc(t->data, t->capacity * sizeof(int8_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-int8_t popI8Array(struct I8Array *t) {
+});
+ceslf(int8_t, popI8Array, (struct I8Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-int8_t getI8Array(struct I8Array *t, int i) {
+});
+ceslf(int8_t, getI8Array, (struct I8Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setI8Array(struct I8Array *t, int i, int8_t v) {
+});
+ceslf(void, setI8Array, (struct I8Array * t, int i, int8_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearI8Array(struct I8Array *t) { t->size = 0; }
-void delI8Array(struct I8Array *t) {
+});
+ceslf(void, clearI8Array, (struct I8Array * t), { t->size = 0; });
+ceslf(void, delI8Array, (struct I8Array * t), {
     free(t->data);
     free(t);
-}
-int8_t removeI8Array(struct I8Array *t, int i) {
+});
+ceslf(int8_t, removeI8Array, (struct I8Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -65,16 +70,16 @@ int8_t removeI8Array(struct I8Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct I8Array *newI8Array();
-struct I8Array *copyI8Array(struct I8Array *in) {
+ceslf(struct I8Array, *copyI8Array, (struct I8Array * in), {
     struct I8Array *out = newI8Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct I8Array *newI8Array() {
+});
+ceslf(struct I8Array, *newI8Array, (), {
     struct I8Array *t = (struct I8Array *)malloc(sizeof(struct I8Array));
     t->data = (int8_t *)malloc(10 * sizeof(int8_t));
     t->size = 0;
@@ -87,7 +92,8 @@ struct I8Array *newI8Array() {
     t->del = &delI8Array;
     t->remove = &removeI8Array;
     return t;
-};
+});
+;
 struct U8Array {
     uint8_t *data;
     int size;
@@ -101,47 +107,47 @@ struct U8Array {
     uint8_t (*remove)(struct U8Array *, int);
     struct U8Array *(*copy)(struct U8Array *);
 };
-void pushU8Array(struct U8Array *t, uint8_t i) {
+ceslf(void, pushU8Array, (struct U8Array * t, uint8_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (uint8_t *)realloc(t->data, t->capacity * sizeof(uint8_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-uint8_t popU8Array(struct U8Array *t) {
+});
+ceslf(uint8_t, popU8Array, (struct U8Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-uint8_t getU8Array(struct U8Array *t, int i) {
+});
+ceslf(uint8_t, getU8Array, (struct U8Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setU8Array(struct U8Array *t, int i, uint8_t v) {
+});
+ceslf(void, setU8Array, (struct U8Array * t, int i, uint8_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearU8Array(struct U8Array *t) { t->size = 0; }
-void delU8Array(struct U8Array *t) {
+});
+ceslf(void, clearU8Array, (struct U8Array * t), { t->size = 0; });
+ceslf(void, delU8Array, (struct U8Array * t), {
     free(t->data);
     free(t);
-}
-uint8_t removeU8Array(struct U8Array *t, int i) {
+});
+ceslf(uint8_t, removeU8Array, (struct U8Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 94, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -151,16 +157,16 @@ uint8_t removeU8Array(struct U8Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct U8Array *newU8Array();
-struct U8Array *copyU8Array(struct U8Array *in) {
+ceslf(struct U8Array, *copyU8Array, (struct U8Array * in), {
     struct U8Array *out = newU8Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct U8Array *newU8Array() {
+});
+ceslf(struct U8Array, *newU8Array, (), {
     struct U8Array *t = (struct U8Array *)malloc(sizeof(struct U8Array));
     t->data = (uint8_t *)malloc(10 * sizeof(uint8_t));
     t->size = 0;
@@ -173,7 +179,8 @@ struct U8Array *newU8Array() {
     t->del = &delU8Array;
     t->remove = &removeU8Array;
     return t;
-};
+});
+;
 ;
 struct I16Array {
     int16_t *data;
@@ -188,47 +195,47 @@ struct I16Array {
     int16_t (*remove)(struct I16Array *, int);
     struct I16Array *(*copy)(struct I16Array *);
 };
-void pushI16Array(struct I16Array *t, int16_t i) {
+ceslf(void, pushI16Array, (struct I16Array * t, int16_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (int16_t *)realloc(t->data, t->capacity * sizeof(int16_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-int16_t popI16Array(struct I16Array *t) {
+});
+ceslf(int16_t, popI16Array, (struct I16Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-int16_t getI16Array(struct I16Array *t, int i) {
+});
+ceslf(int16_t, getI16Array, (struct I16Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setI16Array(struct I16Array *t, int i, int16_t v) {
+});
+ceslf(void, setI16Array, (struct I16Array * t, int i, int16_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearI16Array(struct I16Array *t) { t->size = 0; }
-void delI16Array(struct I16Array *t) {
+});
+ceslf(void, clearI16Array, (struct I16Array * t), { t->size = 0; });
+ceslf(void, delI16Array, (struct I16Array * t), {
     free(t->data);
     free(t);
-}
-int16_t removeI16Array(struct I16Array *t, int i) {
+});
+ceslf(int16_t, removeI16Array, (struct I16Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -238,16 +245,16 @@ int16_t removeI16Array(struct I16Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct I16Array *newI16Array();
-struct I16Array *copyI16Array(struct I16Array *in) {
+ceslf(struct I16Array, *copyI16Array, (struct I16Array * in), {
     struct I16Array *out = newI16Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct I16Array *newI16Array() {
+});
+ceslf(struct I16Array, *newI16Array, (), {
     struct I16Array *t = (struct I16Array *)malloc(sizeof(struct I16Array));
     t->data = (int16_t *)malloc(10 * sizeof(int16_t));
     t->size = 0;
@@ -260,7 +267,8 @@ struct I16Array *newI16Array() {
     t->del = &delI16Array;
     t->remove = &removeI16Array;
     return t;
-};
+});
+;
 struct U16Array {
     uint16_t *data;
     int size;
@@ -274,47 +282,47 @@ struct U16Array {
     uint16_t (*remove)(struct U16Array *, int);
     struct U16Array *(*copy)(struct U16Array *);
 };
-void pushU16Array(struct U16Array *t, uint16_t i) {
+ceslf(void, pushU16Array, (struct U16Array * t, uint16_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (uint16_t *)realloc(t->data, t->capacity * sizeof(uint16_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-uint16_t popU16Array(struct U16Array *t) {
+});
+ceslf(uint16_t, popU16Array, (struct U16Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-uint16_t getU16Array(struct U16Array *t, int i) {
+});
+ceslf(uint16_t, getU16Array, (struct U16Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setU16Array(struct U16Array *t, int i, uint16_t v) {
+});
+ceslf(void, setU16Array, (struct U16Array * t, int i, uint16_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearU16Array(struct U16Array *t) { t->size = 0; }
-void delU16Array(struct U16Array *t) {
+});
+ceslf(void, clearU16Array, (struct U16Array * t), { t->size = 0; });
+ceslf(void, delU16Array, (struct U16Array * t), {
     free(t->data);
     free(t);
-}
-uint16_t removeU16Array(struct U16Array *t, int i) {
+});
+ceslf(uint16_t, removeU16Array, (struct U16Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -324,16 +332,16 @@ uint16_t removeU16Array(struct U16Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct U16Array *newU16Array();
-struct U16Array *copyU16Array(struct U16Array *in) {
+ceslf(struct U16Array, *copyU16Array, (struct U16Array * in), {
     struct U16Array *out = newU16Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct U16Array *newU16Array() {
+});
+ceslf(struct U16Array, *newU16Array, (), {
     struct U16Array *t = (struct U16Array *)malloc(sizeof(struct U16Array));
     t->data = (uint16_t *)malloc(10 * sizeof(uint16_t));
     t->size = 0;
@@ -346,7 +354,8 @@ struct U16Array *newU16Array() {
     t->del = &delU16Array;
     t->remove = &removeU16Array;
     return t;
-};
+});
+;
 ;
 struct I32Array {
     int32_t *data;
@@ -361,47 +370,47 @@ struct I32Array {
     int32_t (*remove)(struct I32Array *, int);
     struct I32Array *(*copy)(struct I32Array *);
 };
-void pushI32Array(struct I32Array *t, int32_t i) {
+ceslf(void, pushI32Array, (struct I32Array * t, int32_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (int32_t *)realloc(t->data, t->capacity * sizeof(int32_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-int32_t popI32Array(struct I32Array *t) {
+});
+ceslf(int32_t, popI32Array, (struct I32Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-int32_t getI32Array(struct I32Array *t, int i) {
+});
+ceslf(int32_t, getI32Array, (struct I32Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setI32Array(struct I32Array *t, int i, int32_t v) {
+});
+ceslf(void, setI32Array, (struct I32Array * t, int i, int32_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearI32Array(struct I32Array *t) { t->size = 0; }
-void delI32Array(struct I32Array *t) {
+});
+ceslf(void, clearI32Array, (struct I32Array * t), { t->size = 0; });
+ceslf(void, delI32Array, (struct I32Array * t), {
     free(t->data);
     free(t);
-}
-int32_t removeI32Array(struct I32Array *t, int i) {
+});
+ceslf(int32_t, removeI32Array, (struct I32Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -411,16 +420,16 @@ int32_t removeI32Array(struct I32Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct I32Array *newI32Array();
-struct I32Array *copyI32Array(struct I32Array *in) {
+ceslf(struct I32Array, *copyI32Array, (struct I32Array * in), {
     struct I32Array *out = newI32Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct I32Array *newI32Array() {
+});
+ceslf(struct I32Array, *newI32Array, (), {
     struct I32Array *t = (struct I32Array *)malloc(sizeof(struct I32Array));
     t->data = (int32_t *)malloc(10 * sizeof(int32_t));
     t->size = 0;
@@ -433,7 +442,8 @@ struct I32Array *newI32Array() {
     t->del = &delI32Array;
     t->remove = &removeI32Array;
     return t;
-};
+});
+;
 struct U32Array {
     uint32_t *data;
     int size;
@@ -447,47 +457,47 @@ struct U32Array {
     uint32_t (*remove)(struct U32Array *, int);
     struct U32Array *(*copy)(struct U32Array *);
 };
-void pushU32Array(struct U32Array *t, uint32_t i) {
+ceslf(void, pushU32Array, (struct U32Array * t, uint32_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (uint32_t *)realloc(t->data, t->capacity * sizeof(uint32_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-uint32_t popU32Array(struct U32Array *t) {
+});
+ceslf(uint32_t, popU32Array, (struct U32Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-uint32_t getU32Array(struct U32Array *t, int i) {
+});
+ceslf(uint32_t, getU32Array, (struct U32Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setU32Array(struct U32Array *t, int i, uint32_t v) {
+});
+ceslf(void, setU32Array, (struct U32Array * t, int i, uint32_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearU32Array(struct U32Array *t) { t->size = 0; }
-void delU32Array(struct U32Array *t) {
+});
+ceslf(void, clearU32Array, (struct U32Array * t), { t->size = 0; });
+ceslf(void, delU32Array, (struct U32Array * t), {
     free(t->data);
     free(t);
-}
-uint32_t removeU32Array(struct U32Array *t, int i) {
+});
+ceslf(uint32_t, removeU32Array, (struct U32Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -497,16 +507,16 @@ uint32_t removeU32Array(struct U32Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct U32Array *newU32Array();
-struct U32Array *copyU32Array(struct U32Array *in) {
+ceslf(struct U32Array, *copyU32Array, (struct U32Array * in), {
     struct U32Array *out = newU32Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct U32Array *newU32Array() {
+});
+ceslf(struct U32Array, *newU32Array, (), {
     struct U32Array *t = (struct U32Array *)malloc(sizeof(struct U32Array));
     t->data = (uint32_t *)malloc(10 * sizeof(uint32_t));
     t->size = 0;
@@ -519,7 +529,8 @@ struct U32Array *newU32Array() {
     t->del = &delU32Array;
     t->remove = &removeU32Array;
     return t;
-};
+});
+;
 ;
 struct I64Array {
     int64_t *data;
@@ -534,47 +545,47 @@ struct I64Array {
     int64_t (*remove)(struct I64Array *, int);
     struct I64Array *(*copy)(struct I64Array *);
 };
-void pushI64Array(struct I64Array *t, int64_t i) {
+ceslf(void, pushI64Array, (struct I64Array * t, int64_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (int64_t *)realloc(t->data, t->capacity * sizeof(int64_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-int64_t popI64Array(struct I64Array *t) {
+});
+ceslf(int64_t, popI64Array, (struct I64Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-int64_t getI64Array(struct I64Array *t, int i) {
+});
+ceslf(int64_t, getI64Array, (struct I64Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setI64Array(struct I64Array *t, int i, int64_t v) {
+});
+ceslf(void, setI64Array, (struct I64Array * t, int i, int64_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearI64Array(struct I64Array *t) { t->size = 0; }
-void delI64Array(struct I64Array *t) {
+});
+ceslf(void, clearI64Array, (struct I64Array * t), { t->size = 0; });
+ceslf(void, delI64Array, (struct I64Array * t), {
     free(t->data);
     free(t);
-}
-int64_t removeI64Array(struct I64Array *t, int i) {
+});
+ceslf(int64_t, removeI64Array, (struct I64Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -584,16 +595,16 @@ int64_t removeI64Array(struct I64Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct I64Array *newI64Array();
-struct I64Array *copyI64Array(struct I64Array *in) {
+ceslf(struct I64Array, *copyI64Array, (struct I64Array * in), {
     struct I64Array *out = newI64Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct I64Array *newI64Array() {
+});
+ceslf(struct I64Array, *newI64Array, (), {
     struct I64Array *t = (struct I64Array *)malloc(sizeof(struct I64Array));
     t->data = (int64_t *)malloc(10 * sizeof(int64_t));
     t->size = 0;
@@ -606,7 +617,8 @@ struct I64Array *newI64Array() {
     t->del = &delI64Array;
     t->remove = &removeI64Array;
     return t;
-};
+});
+;
 struct U64Array {
     uint64_t *data;
     int size;
@@ -620,47 +632,47 @@ struct U64Array {
     uint64_t (*remove)(struct U64Array *, int);
     struct U64Array *(*copy)(struct U64Array *);
 };
-void pushU64Array(struct U64Array *t, uint64_t i) {
+ceslf(void, pushU64Array, (struct U64Array * t, uint64_t i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (uint64_t *)realloc(t->data, t->capacity * sizeof(uint64_t));
     }
     t->data[t->size] = i;
     t->size++;
-}
-uint64_t popU64Array(struct U64Array *t) {
+});
+ceslf(uint64_t, popU64Array, (struct U64Array * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-uint64_t getU64Array(struct U64Array *t, int i) {
+});
+ceslf(uint64_t, getU64Array, (struct U64Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setU64Array(struct U64Array *t, int i, uint64_t v) {
+});
+ceslf(void, setU64Array, (struct U64Array * t, int i, uint64_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearU64Array(struct U64Array *t) { t->size = 0; }
-void delU64Array(struct U64Array *t) {
+});
+ceslf(void, clearU64Array, (struct U64Array * t), { t->size = 0; });
+ceslf(void, delU64Array, (struct U64Array * t), {
     free(t->data);
     free(t);
-}
-uint64_t removeU64Array(struct U64Array *t, int i) {
+});
+ceslf(uint64_t, removeU64Array, (struct U64Array * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -670,16 +682,16 @@ uint64_t removeU64Array(struct U64Array *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct U64Array *newU64Array();
-struct U64Array *copyU64Array(struct U64Array *in) {
+ceslf(struct U64Array, *copyU64Array, (struct U64Array * in), {
     struct U64Array *out = newU64Array();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct U64Array *newU64Array() {
+});
+ceslf(struct U64Array, *newU64Array, (), {
     struct U64Array *t = (struct U64Array *)malloc(sizeof(struct U64Array));
     t->data = (uint64_t *)malloc(10 * sizeof(uint64_t));
     t->size = 0;
@@ -692,7 +704,8 @@ struct U64Array *newU64Array() {
     t->del = &delU64Array;
     t->remove = &removeU64Array;
     return t;
-};
+});
+;
 ;
 
 struct CharArray {
@@ -708,47 +721,47 @@ struct CharArray {
     char (*remove)(struct CharArray *, int);
     struct CharArray *(*copy)(struct CharArray *);
 };
-void pushCharArray(struct CharArray *t, char i) {
+ceslf(void, pushCharArray, (struct CharArray * t, char i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (char *)realloc(t->data, t->capacity * sizeof(char));
     }
     t->data[t->size] = i;
     t->size++;
-}
-char popCharArray(struct CharArray *t) {
+});
+ceslf(char, popCharArray, (struct CharArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-char getCharArray(struct CharArray *t, int i) {
+});
+ceslf(char, getCharArray, (struct CharArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setCharArray(struct CharArray *t, int i, char v) {
+});
+ceslf(void, setCharArray, (struct CharArray * t, int i, char v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearCharArray(struct CharArray *t) { t->size = 0; }
-void delCharArray(struct CharArray *t) {
+});
+ceslf(void, clearCharArray, (struct CharArray * t), { t->size = 0; });
+ceslf(void, delCharArray, (struct CharArray * t), {
     free(t->data);
     free(t);
-}
-char removeCharArray(struct CharArray *t, int i) {
+});
+ceslf(char, removeCharArray, (struct CharArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -758,16 +771,16 @@ char removeCharArray(struct CharArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct CharArray *newCharArray();
-struct CharArray *copyCharArray(struct CharArray *in) {
+ceslf(struct CharArray, *copyCharArray, (struct CharArray * in), {
     struct CharArray *out = newCharArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct CharArray *newCharArray() {
+});
+ceslf(struct CharArray, *newCharArray, (), {
     struct CharArray *t = (struct CharArray *)malloc(sizeof(struct CharArray));
     t->data = (char *)malloc(10 * sizeof(char));
     t->size = 0;
@@ -780,7 +793,8 @@ struct CharArray *newCharArray() {
     t->del = &delCharArray;
     t->remove = &removeCharArray;
     return t;
-};
+});
+;
 struct UCharArray {
     unsigned char *data;
     int size;
@@ -794,7 +808,7 @@ struct UCharArray {
     unsigned char (*remove)(struct UCharArray *, int);
     struct UCharArray *(*copy)(struct UCharArray *);
 };
-void pushUCharArray(struct UCharArray *t, unsigned char i) {
+ceslf(void, pushUCharArray, (struct UCharArray * t, unsigned char i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (unsigned char *)realloc(t->data,
@@ -802,40 +816,40 @@ void pushUCharArray(struct UCharArray *t, unsigned char i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-unsigned char popUCharArray(struct UCharArray *t) {
+});
+ceslf(unsigned char, popUCharArray, (struct UCharArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-unsigned char getUCharArray(struct UCharArray *t, int i) {
+});
+ceslf(unsigned char, getUCharArray, (struct UCharArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setUCharArray(struct UCharArray *t, int i, unsigned char v) {
+});
+ceslf(void, setUCharArray, (struct UCharArray * t, int i, unsigned char v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearUCharArray(struct UCharArray *t) { t->size = 0; }
-void delUCharArray(struct UCharArray *t) {
+});
+ceslf(void, clearUCharArray, (struct UCharArray * t), { t->size = 0; });
+ceslf(void, delUCharArray, (struct UCharArray * t), {
     free(t->data);
     free(t);
-}
-unsigned char removeUCharArray(struct UCharArray *t, int i) {
+});
+ceslf(unsigned char, removeUCharArray, (struct UCharArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 103, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -845,16 +859,16 @@ unsigned char removeUCharArray(struct UCharArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct UCharArray *newUCharArray();
-struct UCharArray *copyUCharArray(struct UCharArray *in) {
+ceslf(struct UCharArray, *copyUCharArray, (struct UCharArray * in), {
     struct UCharArray *out = newUCharArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct UCharArray *newUCharArray() {
+});
+ceslf(struct UCharArray, *newUCharArray, (), {
     struct UCharArray *t =
         (struct UCharArray *)malloc(sizeof(struct UCharArray));
     t->data = (unsigned char *)malloc(10 * sizeof(unsigned char));
@@ -868,7 +882,8 @@ struct UCharArray *newUCharArray() {
     t->del = &delUCharArray;
     t->remove = &removeUCharArray;
     return t;
-};
+});
+;
 ;
 struct ShortArray {
     short *data;
@@ -883,47 +898,47 @@ struct ShortArray {
     short (*remove)(struct ShortArray *, int);
     struct ShortArray *(*copy)(struct ShortArray *);
 };
-void pushShortArray(struct ShortArray *t, short i) {
+ceslf(void, pushShortArray, (struct ShortArray * t, short i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (short *)realloc(t->data, t->capacity * sizeof(short));
     }
     t->data[t->size] = i;
     t->size++;
-}
-short popShortArray(struct ShortArray *t) {
+});
+ceslf(short, popShortArray, (struct ShortArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-short getShortArray(struct ShortArray *t, int i) {
+});
+ceslf(short, getShortArray, (struct ShortArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setShortArray(struct ShortArray *t, int i, short v) {
+});
+ceslf(void, setShortArray, (struct ShortArray * t, int i, short v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearShortArray(struct ShortArray *t) { t->size = 0; }
-void delShortArray(struct ShortArray *t) {
+});
+ceslf(void, clearShortArray, (struct ShortArray * t), { t->size = 0; });
+ceslf(void, delShortArray, (struct ShortArray * t), {
     free(t->data);
     free(t);
-}
-short removeShortArray(struct ShortArray *t, int i) {
+});
+ceslf(short, removeShortArray, (struct ShortArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -933,16 +948,16 @@ short removeShortArray(struct ShortArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct ShortArray *newShortArray();
-struct ShortArray *copyShortArray(struct ShortArray *in) {
+ceslf(struct ShortArray, *copyShortArray, (struct ShortArray * in), {
     struct ShortArray *out = newShortArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct ShortArray *newShortArray() {
+});
+ceslf(struct ShortArray, *newShortArray, (), {
     struct ShortArray *t =
         (struct ShortArray *)malloc(sizeof(struct ShortArray));
     t->data = (short *)malloc(10 * sizeof(short));
@@ -956,7 +971,8 @@ struct ShortArray *newShortArray() {
     t->del = &delShortArray;
     t->remove = &removeShortArray;
     return t;
-};
+});
+;
 struct UShortArray {
     unsigned short *data;
     int size;
@@ -970,7 +986,7 @@ struct UShortArray {
     unsigned short (*remove)(struct UShortArray *, int);
     struct UShortArray *(*copy)(struct UShortArray *);
 };
-void pushUShortArray(struct UShortArray *t, unsigned short i) {
+ceslf(void, pushUShortArray, (struct UShortArray * t, unsigned short i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (unsigned short *)realloc(
@@ -978,40 +994,40 @@ void pushUShortArray(struct UShortArray *t, unsigned short i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-unsigned short popUShortArray(struct UShortArray *t) {
+});
+ceslf(unsigned short, popUShortArray, (struct UShortArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-unsigned short getUShortArray(struct UShortArray *t, int i) {
+});
+ceslf(unsigned short, getUShortArray, (struct UShortArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setUShortArray(struct UShortArray *t, int i, unsigned short v) {
+});
+ceslf(void, setUShortArray, (struct UShortArray * t, int i, unsigned short v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearUShortArray(struct UShortArray *t) { t->size = 0; }
-void delUShortArray(struct UShortArray *t) {
+});
+ceslf(void, clearUShortArray, (struct UShortArray * t), { t->size = 0; });
+ceslf(void, delUShortArray, (struct UShortArray * t), {
     free(t->data);
     free(t);
-}
-unsigned short removeUShortArray(struct UShortArray *t, int i) {
+});
+ceslf(unsigned short, removeUShortArray, (struct UShortArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1021,16 +1037,16 @@ unsigned short removeUShortArray(struct UShortArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct UShortArray *newUShortArray();
-struct UShortArray *copyUShortArray(struct UShortArray *in) {
+ceslf(struct UShortArray, *copyUShortArray, (struct UShortArray * in), {
     struct UShortArray *out = newUShortArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct UShortArray *newUShortArray() {
+});
+ceslf(struct UShortArray, *newUShortArray, (), {
     struct UShortArray *t =
         (struct UShortArray *)malloc(sizeof(struct UShortArray));
     t->data = (unsigned short *)malloc(10 * sizeof(unsigned short));
@@ -1044,7 +1060,8 @@ struct UShortArray *newUShortArray() {
     t->del = &delUShortArray;
     t->remove = &removeUShortArray;
     return t;
-};
+});
+;
 ;
 struct IntArray {
     int *data;
@@ -1059,47 +1076,47 @@ struct IntArray {
     int (*remove)(struct IntArray *, int);
     struct IntArray *(*copy)(struct IntArray *);
 };
-void pushIntArray(struct IntArray *t, int i) {
+ceslf(void, pushIntArray, (struct IntArray * t, int i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (int *)realloc(t->data, t->capacity * sizeof(int));
     }
     t->data[t->size] = i;
     t->size++;
-}
-int popIntArray(struct IntArray *t) {
+});
+ceslf(int, popIntArray, (struct IntArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-int getIntArray(struct IntArray *t, int i) {
+});
+ceslf(int, getIntArray, (struct IntArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setIntArray(struct IntArray *t, int i, int v) {
+});
+ceslf(void, setIntArray, (struct IntArray * t, int i, int v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearIntArray(struct IntArray *t) { t->size = 0; }
-void delIntArray(struct IntArray *t) {
+});
+ceslf(void, clearIntArray, (struct IntArray * t), { t->size = 0; });
+ceslf(void, delIntArray, (struct IntArray * t), {
     free(t->data);
     free(t);
-}
-int removeIntArray(struct IntArray *t, int i) {
+});
+ceslf(int, removeIntArray, (struct IntArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1109,16 +1126,16 @@ int removeIntArray(struct IntArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct IntArray *newIntArray();
-struct IntArray *copyIntArray(struct IntArray *in) {
+ceslf(struct IntArray, *copyIntArray, (struct IntArray * in), {
     struct IntArray *out = newIntArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct IntArray *newIntArray() {
+});
+ceslf(struct IntArray, *newIntArray, (), {
     struct IntArray *t = (struct IntArray *)malloc(sizeof(struct IntArray));
     t->data = (int *)malloc(10 * sizeof(int));
     t->size = 0;
@@ -1131,7 +1148,8 @@ struct IntArray *newIntArray() {
     t->del = &delIntArray;
     t->remove = &removeIntArray;
     return t;
-};
+});
+;
 struct UIntArray {
     unsigned int *data;
     int size;
@@ -1145,7 +1163,7 @@ struct UIntArray {
     unsigned int (*remove)(struct UIntArray *, int);
     struct UIntArray *(*copy)(struct UIntArray *);
 };
-void pushUIntArray(struct UIntArray *t, unsigned int i) {
+ceslf(void, pushUIntArray, (struct UIntArray * t, unsigned int i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (unsigned int *)realloc(t->data,
@@ -1153,40 +1171,40 @@ void pushUIntArray(struct UIntArray *t, unsigned int i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-unsigned int popUIntArray(struct UIntArray *t) {
+});
+ceslf(unsigned int, popUIntArray, (struct UIntArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-unsigned int getUIntArray(struct UIntArray *t, int i) {
+});
+ceslf(unsigned int, getUIntArray, (struct UIntArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setUIntArray(struct UIntArray *t, int i, unsigned int v) {
+});
+ceslf(void, setUIntArray, (struct UIntArray * t, int i, unsigned int v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearUIntArray(struct UIntArray *t) { t->size = 0; }
-void delUIntArray(struct UIntArray *t) {
+});
+ceslf(void, clearUIntArray, (struct UIntArray * t), { t->size = 0; });
+ceslf(void, delUIntArray, (struct UIntArray * t), {
     free(t->data);
     free(t);
-}
-unsigned int removeUIntArray(struct UIntArray *t, int i) {
+});
+ceslf(unsigned int, removeUIntArray, (struct UIntArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1196,16 +1214,16 @@ unsigned int removeUIntArray(struct UIntArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct UIntArray *newUIntArray();
-struct UIntArray *copyUIntArray(struct UIntArray *in) {
+ceslf(struct UIntArray, *copyUIntArray, (struct UIntArray * in), {
     struct UIntArray *out = newUIntArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct UIntArray *newUIntArray() {
+});
+ceslf(struct UIntArray, *newUIntArray, (), {
     struct UIntArray *t = (struct UIntArray *)malloc(sizeof(struct UIntArray));
     t->data = (unsigned int *)malloc(10 * sizeof(unsigned int));
     t->size = 0;
@@ -1218,7 +1236,8 @@ struct UIntArray *newUIntArray() {
     t->del = &delUIntArray;
     t->remove = &removeUIntArray;
     return t;
-};
+});
+;
 ;
 struct LongArray {
     long *data;
@@ -1233,47 +1252,47 @@ struct LongArray {
     long (*remove)(struct LongArray *, int);
     struct LongArray *(*copy)(struct LongArray *);
 };
-void pushLongArray(struct LongArray *t, long i) {
+ceslf(void, pushLongArray, (struct LongArray * t, long i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (long *)realloc(t->data, t->capacity * sizeof(long));
     }
     t->data[t->size] = i;
     t->size++;
-}
-long popLongArray(struct LongArray *t) {
+});
+ceslf(long, popLongArray, (struct LongArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-long getLongArray(struct LongArray *t, int i) {
+});
+ceslf(long, getLongArray, (struct LongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setLongArray(struct LongArray *t, int i, long v) {
+});
+ceslf(void, setLongArray, (struct LongArray * t, int i, long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearLongArray(struct LongArray *t) { t->size = 0; }
-void delLongArray(struct LongArray *t) {
+});
+ceslf(void, clearLongArray, (struct LongArray * t), { t->size = 0; });
+ceslf(void, delLongArray, (struct LongArray * t), {
     free(t->data);
     free(t);
-}
-long removeLongArray(struct LongArray *t, int i) {
+});
+ceslf(long, removeLongArray, (struct LongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1283,16 +1302,16 @@ long removeLongArray(struct LongArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct LongArray *newLongArray();
-struct LongArray *copyLongArray(struct LongArray *in) {
+ceslf(struct LongArray, *copyLongArray, (struct LongArray * in), {
     struct LongArray *out = newLongArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct LongArray *newLongArray() {
+});
+ceslf(struct LongArray, *newLongArray, (), {
     struct LongArray *t = (struct LongArray *)malloc(sizeof(struct LongArray));
     t->data = (long *)malloc(10 * sizeof(long));
     t->size = 0;
@@ -1305,7 +1324,8 @@ struct LongArray *newLongArray() {
     t->del = &delLongArray;
     t->remove = &removeLongArray;
     return t;
-};
+});
+;
 struct ULongArray {
     unsigned long *data;
     int size;
@@ -1319,7 +1339,7 @@ struct ULongArray {
     unsigned long (*remove)(struct ULongArray *, int);
     struct ULongArray *(*copy)(struct ULongArray *);
 };
-void pushULongArray(struct ULongArray *t, unsigned long i) {
+ceslf(void, pushULongArray, (struct ULongArray * t, unsigned long i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (unsigned long *)realloc(t->data,
@@ -1327,40 +1347,40 @@ void pushULongArray(struct ULongArray *t, unsigned long i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-unsigned long popULongArray(struct ULongArray *t) {
+});
+ceslf(unsigned long, popULongArray, (struct ULongArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-unsigned long getULongArray(struct ULongArray *t, int i) {
+});
+ceslf(unsigned long, getULongArray, (struct ULongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setULongArray(struct ULongArray *t, int i, unsigned long v) {
+});
+ceslf(void, setULongArray, (struct ULongArray * t, int i, unsigned long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearULongArray(struct ULongArray *t) { t->size = 0; }
-void delULongArray(struct ULongArray *t) {
+});
+ceslf(void, clearULongArray, (struct ULongArray * t), { t->size = 0; });
+ceslf(void, delULongArray, (struct ULongArray * t), {
     free(t->data);
     free(t);
-}
-unsigned long removeULongArray(struct ULongArray *t, int i) {
+});
+ceslf(unsigned long, removeULongArray, (struct ULongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1370,16 +1390,16 @@ unsigned long removeULongArray(struct ULongArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct ULongArray *newULongArray();
-struct ULongArray *copyULongArray(struct ULongArray *in) {
+ceslf(struct ULongArray, *copyULongArray, (struct ULongArray * in), {
     struct ULongArray *out = newULongArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct ULongArray *newULongArray() {
+});
+ceslf(struct ULongArray, *newULongArray, (), {
     struct ULongArray *t =
         (struct ULongArray *)malloc(sizeof(struct ULongArray));
     t->data = (unsigned long *)malloc(10 * sizeof(unsigned long));
@@ -1393,7 +1413,8 @@ struct ULongArray *newULongArray() {
     t->del = &delULongArray;
     t->remove = &removeULongArray;
     return t;
-};
+});
+;
 ;
 struct LongLongArray {
     long long *data;
@@ -1408,7 +1429,7 @@ struct LongLongArray {
     long long (*remove)(struct LongLongArray *, int);
     struct LongLongArray *(*copy)(struct LongLongArray *);
 };
-void pushLongLongArray(struct LongLongArray *t, long long i) {
+ceslf(void, pushLongLongArray, (struct LongLongArray * t, long long i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data =
@@ -1416,40 +1437,40 @@ void pushLongLongArray(struct LongLongArray *t, long long i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-long long popLongLongArray(struct LongLongArray *t) {
+});
+ceslf(long long, popLongLongArray, (struct LongLongArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-long long getLongLongArray(struct LongLongArray *t, int i) {
+});
+ceslf(long long, getLongLongArray, (struct LongLongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setLongLongArray(struct LongLongArray *t, int i, long long v) {
+});
+ceslf(void, setLongLongArray, (struct LongLongArray * t, int i, long long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearLongLongArray(struct LongLongArray *t) { t->size = 0; }
-void delLongLongArray(struct LongLongArray *t) {
+});
+ceslf(void, clearLongLongArray, (struct LongLongArray * t), { t->size = 0; });
+ceslf(void, delLongLongArray, (struct LongLongArray * t), {
     free(t->data);
     free(t);
-}
-long long removeLongLongArray(struct LongLongArray *t, int i) {
+});
+ceslf(long long, removeLongLongArray, (struct LongLongArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1459,16 +1480,16 @@ long long removeLongLongArray(struct LongLongArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct LongLongArray *newLongLongArray();
-struct LongLongArray *copyLongLongArray(struct LongLongArray *in) {
+ceslf(struct LongLongArray, *copyLongLongArray, (struct LongLongArray * in), {
     struct LongLongArray *out = newLongLongArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct LongLongArray *newLongLongArray() {
+});
+ceslf(struct LongLongArray, *newLongLongArray, (), {
     struct LongLongArray *t =
         (struct LongLongArray *)malloc(sizeof(struct LongLongArray));
     t->data = (long long *)malloc(10 * sizeof(long long));
@@ -1482,7 +1503,8 @@ struct LongLongArray *newLongLongArray() {
     t->del = &delLongLongArray;
     t->remove = &removeLongLongArray;
     return t;
-};
+});
+;
 struct ULongLongArray {
     unsigned long long *data;
     int size;
@@ -1496,67 +1518,72 @@ struct ULongLongArray {
     unsigned long long (*remove)(struct ULongLongArray *, int);
     struct ULongLongArray *(*copy)(struct ULongLongArray *);
 };
-void pushULongLongArray(struct ULongLongArray *t, unsigned long long i) {
-    if (t->size == t->capacity) {
-        t->capacity *= 2;
-        t->data = (unsigned long long *)realloc(
-            t->data, t->capacity * sizeof(unsigned long long));
-    }
-    t->data[t->size] = i;
-    t->size++;
-}
-unsigned long long popULongLongArray(struct ULongLongArray *t) {
+ceslf(void, pushULongLongArray,
+      (struct ULongLongArray * t, unsigned long long i), {
+          if (t->size == t->capacity) {
+              t->capacity *= 2;
+              t->data = (unsigned long long *)realloc(
+                  t->data, t->capacity * sizeof(unsigned long long));
+          }
+          t->data[t->size] = i;
+          t->size++;
+      });
+ceslf(unsigned long long, popULongLongArray, (struct ULongLongArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-unsigned long long getULongLongArray(struct ULongLongArray *t, int i) {
-    if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
-               "Index out of bounds!");
-        ;
-    }
-    return t->data[i];
-}
-void setULongLongArray(struct ULongLongArray *t, int i, unsigned long long v) {
-    if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
-               "Index out of bounds!");
-        ;
-    }
-    t->data[i] = v;
-}
-void clearULongLongArray(struct ULongLongArray *t) { t->size = 0; }
-void delULongLongArray(struct ULongLongArray *t) {
+});
+ceslf(unsigned long long, getULongLongArray, (struct ULongLongArray * t, int i),
+      {
+          if (i < 0 || i >= t->size) {
+              printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+                     "Index out of bounds!");
+              ;
+          }
+          return t->data[i];
+      });
+ceslf(void, setULongLongArray,
+      (struct ULongLongArray * t, int i, unsigned long long v), {
+          if (i < 0 || i >= t->size) {
+              printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+                     "Index out of bounds!");
+              ;
+          }
+          t->data[i] = v;
+      });
+ceslf(void, clearULongLongArray, (struct ULongLongArray * t), { t->size = 0; });
+ceslf(void, delULongLongArray, (struct ULongLongArray * t), {
     free(t->data);
     free(t);
-}
-unsigned long long removeULongLongArray(struct ULongLongArray *t, int i) {
-    if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
-               "Index out of bounds!");
-        ;
-    }
-    unsigned long long v = t->data[i];
-    for (int j = i; j < t->size - 1; j++) {
-        t->data[j] = t->data[j + 1];
-    }
-    t->size--;
-    return v;
-}
+});
+ceslf(unsigned long long, removeULongLongArray,
+      (struct ULongLongArray * t, int i), {
+          if (i < 0 || i >= t->size) {
+              printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+                     "Index out of bounds!");
+              ;
+          }
+          unsigned long long v = t->data[i];
+          for (int j = i; j < t->size - 1; j++) {
+              t->data[j] = t->data[j + 1];
+          }
+          t->size--;
+          return v;
+      });
 struct ULongLongArray *newULongLongArray();
-struct ULongLongArray *copyULongLongArray(struct ULongLongArray *in) {
-    struct ULongLongArray *out = newULongLongArray();
-    for (int i = 0; i < in->size; i++) {
-        out->push(out, in->get(in, i));
-    }
-    return out;
-}
-struct ULongLongArray *newULongLongArray() {
+ceslf(struct ULongLongArray, *copyULongLongArray, (struct ULongLongArray * in),
+      {
+          struct ULongLongArray *out = newULongLongArray();
+          for (int i = 0; i < in->size; i++) {
+              out->push(out, in->get(in, i));
+          }
+          return out;
+      });
+ceslf(struct ULongLongArray, *newULongLongArray, (), {
     struct ULongLongArray *t =
         (struct ULongLongArray *)malloc(sizeof(struct ULongLongArray));
     t->data = (unsigned long long *)malloc(10 * sizeof(unsigned long long));
@@ -1570,7 +1597,8 @@ struct ULongLongArray *newULongLongArray() {
     t->del = &delULongLongArray;
     t->remove = &removeULongLongArray;
     return t;
-};
+});
+;
 ;
 
 struct FloatArray {
@@ -1586,47 +1614,47 @@ struct FloatArray {
     float (*remove)(struct FloatArray *, int);
     struct FloatArray *(*copy)(struct FloatArray *);
 };
-void pushFloatArray(struct FloatArray *t, float i) {
+ceslf(void, pushFloatArray, (struct FloatArray * t, float i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (float *)realloc(t->data, t->capacity * sizeof(float));
     }
     t->data[t->size] = i;
     t->size++;
-}
-float popFloatArray(struct FloatArray *t) {
+});
+ceslf(float, popFloatArray, (struct FloatArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 109, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-float getFloatArray(struct FloatArray *t, int i) {
+});
+ceslf(float, getFloatArray, (struct FloatArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 109, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setFloatArray(struct FloatArray *t, int i, float v) {
+});
+ceslf(void, setFloatArray, (struct FloatArray * t, int i, float v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 109, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearFloatArray(struct FloatArray *t) { t->size = 0; }
-void delFloatArray(struct FloatArray *t) {
+});
+ceslf(void, clearFloatArray, (struct FloatArray * t), { t->size = 0; });
+ceslf(void, delFloatArray, (struct FloatArray * t), {
     free(t->data);
     free(t);
-}
-float removeFloatArray(struct FloatArray *t, int i) {
+});
+ceslf(float, removeFloatArray, (struct FloatArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 109, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1636,16 +1664,16 @@ float removeFloatArray(struct FloatArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct FloatArray *newFloatArray();
-struct FloatArray *copyFloatArray(struct FloatArray *in) {
+ceslf(struct FloatArray, *copyFloatArray, (struct FloatArray * in), {
     struct FloatArray *out = newFloatArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct FloatArray *newFloatArray() {
+});
+ceslf(struct FloatArray, *newFloatArray, (), {
     struct FloatArray *t =
         (struct FloatArray *)malloc(sizeof(struct FloatArray));
     t->data = (float *)malloc(10 * sizeof(float));
@@ -1659,7 +1687,8 @@ struct FloatArray *newFloatArray() {
     t->del = &delFloatArray;
     t->remove = &removeFloatArray;
     return t;
-};
+});
+;
 struct DoubleArray {
     double *data;
     int size;
@@ -1673,47 +1702,47 @@ struct DoubleArray {
     double (*remove)(struct DoubleArray *, int);
     struct DoubleArray *(*copy)(struct DoubleArray *);
 };
-void pushDoubleArray(struct DoubleArray *t, double i) {
+ceslf(void, pushDoubleArray, (struct DoubleArray * t, double i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (double *)realloc(t->data, t->capacity * sizeof(double));
     }
     t->data[t->size] = i;
     t->size++;
-}
-double popDoubleArray(struct DoubleArray *t) {
+});
+ceslf(double, popDoubleArray, (struct DoubleArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-double getDoubleArray(struct DoubleArray *t, int i) {
+});
+ceslf(double, getDoubleArray, (struct DoubleArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setDoubleArray(struct DoubleArray *t, int i, double v) {
+});
+ceslf(void, setDoubleArray, (struct DoubleArray * t, int i, double v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearDoubleArray(struct DoubleArray *t) { t->size = 0; }
-void delDoubleArray(struct DoubleArray *t) {
+});
+ceslf(void, clearDoubleArray, (struct DoubleArray * t), { t->size = 0; });
+ceslf(void, delDoubleArray, (struct DoubleArray * t), {
     free(t->data);
     free(t);
-}
-double removeDoubleArray(struct DoubleArray *t, int i) {
+});
+ceslf(double, removeDoubleArray, (struct DoubleArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1723,16 +1752,16 @@ double removeDoubleArray(struct DoubleArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct DoubleArray *newDoubleArray();
-struct DoubleArray *copyDoubleArray(struct DoubleArray *in) {
+ceslf(struct DoubleArray, *copyDoubleArray, (struct DoubleArray * in), {
     struct DoubleArray *out = newDoubleArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct DoubleArray *newDoubleArray() {
+});
+ceslf(struct DoubleArray, *newDoubleArray, (), {
     struct DoubleArray *t =
         (struct DoubleArray *)malloc(sizeof(struct DoubleArray));
     t->data = (double *)malloc(10 * sizeof(double));
@@ -1746,7 +1775,8 @@ struct DoubleArray *newDoubleArray() {
     t->del = &delDoubleArray;
     t->remove = &removeDoubleArray;
     return t;
-};
+});
+;
 struct LongDoubleArray {
     long double *data;
     int size;
@@ -1760,7 +1790,7 @@ struct LongDoubleArray {
     long double (*remove)(struct LongDoubleArray *, int);
     struct LongDoubleArray *(*copy)(struct LongDoubleArray *);
 };
-void pushLongDoubleArray(struct LongDoubleArray *t, long double i) {
+ceslf(void, pushLongDoubleArray, (struct LongDoubleArray * t, long double i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data =
@@ -1768,40 +1798,42 @@ void pushLongDoubleArray(struct LongDoubleArray *t, long double i) {
     }
     t->data[t->size] = i;
     t->size++;
-}
-long double popLongDoubleArray(struct LongDoubleArray *t) {
+});
+ceslf(long double, popLongDoubleArray, (struct LongDoubleArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-long double getLongDoubleArray(struct LongDoubleArray *t, int i) {
+});
+ceslf(long double, getLongDoubleArray, (struct LongDoubleArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setLongDoubleArray(struct LongDoubleArray *t, int i, long double v) {
-    if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
-               "Index out of bounds!");
-        ;
-    }
-    t->data[i] = v;
-}
-void clearLongDoubleArray(struct LongDoubleArray *t) { t->size = 0; }
-void delLongDoubleArray(struct LongDoubleArray *t) {
+});
+ceslf(void, setLongDoubleArray,
+      (struct LongDoubleArray * t, int i, long double v), {
+          if (i < 0 || i >= t->size) {
+              printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
+                     "Index out of bounds!");
+              ;
+          }
+          t->data[i] = v;
+      });
+ceslf(void, clearLongDoubleArray, (struct LongDoubleArray * t),
+      { t->size = 0; });
+ceslf(void, delLongDoubleArray, (struct LongDoubleArray * t), {
     free(t->data);
     free(t);
-}
-long double removeLongDoubleArray(struct LongDoubleArray *t, int i) {
+});
+ceslf(long double, removeLongDoubleArray, (struct LongDoubleArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1811,16 +1843,17 @@ long double removeLongDoubleArray(struct LongDoubleArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct LongDoubleArray *newLongDoubleArray();
-struct LongDoubleArray *copyLongDoubleArray(struct LongDoubleArray *in) {
-    struct LongDoubleArray *out = newLongDoubleArray();
-    for (int i = 0; i < in->size; i++) {
-        out->push(out, in->get(in, i));
-    }
-    return out;
-}
-struct LongDoubleArray *newLongDoubleArray() {
+ceslf(struct LongDoubleArray, *copyLongDoubleArray,
+      (struct LongDoubleArray * in), {
+          struct LongDoubleArray *out = newLongDoubleArray();
+          for (int i = 0; i < in->size; i++) {
+              out->push(out, in->get(in, i));
+          }
+          return out;
+      });
+ceslf(struct LongDoubleArray, *newLongDoubleArray, (), {
     struct LongDoubleArray *t =
         (struct LongDoubleArray *)malloc(sizeof(struct LongDoubleArray));
     t->data = (long double *)malloc(10 * sizeof(long double));
@@ -1834,7 +1867,8 @@ struct LongDoubleArray *newLongDoubleArray() {
     t->del = &delLongDoubleArray;
     t->remove = &removeLongDoubleArray;
     return t;
-};
+});
+;
 
 struct BoolArray {
     bool *data;
@@ -1849,47 +1883,47 @@ struct BoolArray {
     bool (*remove)(struct BoolArray *, int);
     struct BoolArray *(*copy)(struct BoolArray *);
 };
-void pushBoolArray(struct BoolArray *t, bool i) {
+ceslf(void, pushBoolArray, (struct BoolArray * t, bool i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (bool *)realloc(t->data, t->capacity * sizeof(bool));
     }
     t->data[t->size] = i;
     t->size++;
-}
-bool popBoolArray(struct BoolArray *t) {
+});
+ceslf(bool, popBoolArray, (struct BoolArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 113, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-bool getBoolArray(struct BoolArray *t, int i) {
+});
+ceslf(bool, getBoolArray, (struct BoolArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 113, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setBoolArray(struct BoolArray *t, int i, bool v) {
+});
+ceslf(void, setBoolArray, (struct BoolArray * t, int i, bool v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 113, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearBoolArray(struct BoolArray *t) { t->size = 0; }
-void delBoolArray(struct BoolArray *t) {
+});
+ceslf(void, clearBoolArray, (struct BoolArray * t), { t->size = 0; });
+ceslf(void, delBoolArray, (struct BoolArray * t), {
     free(t->data);
     free(t);
-}
-bool removeBoolArray(struct BoolArray *t, int i) {
+});
+ceslf(bool, removeBoolArray, (struct BoolArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 113, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1899,16 +1933,16 @@ bool removeBoolArray(struct BoolArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct BoolArray *newBoolArray();
-struct BoolArray *copyBoolArray(struct BoolArray *in) {
+ceslf(struct BoolArray, *copyBoolArray, (struct BoolArray * in), {
     struct BoolArray *out = newBoolArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct BoolArray *newBoolArray() {
+});
+ceslf(struct BoolArray, *newBoolArray, (), {
     struct BoolArray *t = (struct BoolArray *)malloc(sizeof(struct BoolArray));
     t->data = (bool *)malloc(10 * sizeof(bool));
     t->size = 0;
@@ -1921,7 +1955,8 @@ struct BoolArray *newBoolArray() {
     t->del = &delBoolArray;
     t->remove = &removeBoolArray;
     return t;
-};
+});
+;
 
 struct StringArray {
     char **data;
@@ -1936,47 +1971,47 @@ struct StringArray {
     char *(*remove)(struct StringArray *, int);
     struct StringArray *(*copy)(struct StringArray *);
 };
-void pushStringArray(struct StringArray *t, char *i) {
+ceslf(void, pushStringArray, (struct StringArray * t, char *i), {
     if (t->size == t->capacity) {
         t->capacity *= 2;
         t->data = (char **)realloc(t->data, t->capacity * sizeof(char *));
     }
     t->data[t->size] = i;
     t->size++;
-}
-char *popStringArray(struct StringArray *t) {
+});
+ceslf(char *, popStringArray, (struct StringArray * t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 115, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
     t->size--;
     return t->data[t->size];
-}
-char *getStringArray(struct StringArray *t, int i) {
+});
+ceslf(char *, getStringArray, (struct StringArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 115, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
                "Index out of bounds!");
         ;
     }
     return t->data[i];
-}
-void setStringArray(struct StringArray *t, int i, char *v) {
+});
+ceslf(void, setStringArray, (struct StringArray * t, int i, char *v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 115, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
                "Index out of bounds!");
         ;
     }
     t->data[i] = v;
-}
-void clearStringArray(struct StringArray *t) { t->size = 0; }
-void delStringArray(struct StringArray *t) {
+});
+ceslf(void, clearStringArray, (struct StringArray * t), { t->size = 0; });
+ceslf(void, delStringArray, (struct StringArray * t), {
     free(t->data);
     free(t);
-}
-char *removeStringArray(struct StringArray *t, int i) {
+});
+ceslf(char *, removeStringArray, (struct StringArray * t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 115, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1986,16 +2021,16 @@ char *removeStringArray(struct StringArray *t, int i) {
     }
     t->size--;
     return v;
-}
+});
 struct StringArray *newStringArray();
-struct StringArray *copyStringArray(struct StringArray *in) {
+ceslf(struct StringArray, *copyStringArray, (struct StringArray * in), {
     struct StringArray *out = newStringArray();
     for (int i = 0; i < in->size; i++) {
         out->push(out, in->get(in, i));
     }
     return out;
-}
-struct StringArray *newStringArray() {
+});
+ceslf(struct StringArray, *newStringArray, (), {
     struct StringArray *t =
         (struct StringArray *)malloc(sizeof(struct StringArray));
     t->data = (char **)malloc(10 * sizeof(char *));
@@ -2009,4 +2044,5 @@ struct StringArray *newStringArray() {
     t->del = &delStringArray;
     t->remove = &removeStringArray;
     return t;
-};
+});
+;
