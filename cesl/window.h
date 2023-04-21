@@ -1,3 +1,4 @@
+#pragma once
 #include "ceslimpl.h"
 // CESL (C Extended Standard Library) Window Management
 /*************************************************************************

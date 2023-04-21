@@ -1,3 +1,4 @@
+#pragma once
 // #define ceslf(type, name, args, body)
 
 // if IMPL is defined, then we are compiling the implementation

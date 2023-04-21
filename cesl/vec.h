@@ -1,3 +1,4 @@
+#pragma once
 #include "arr.h"
 #include "ceslimpl.h"
 #include <stdio.h>

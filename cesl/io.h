@@ -1,3 +1,4 @@
+#pragma once
 #include "ceslimpl.h"
 #include <Stdbool.h>
 #include <errno.h>

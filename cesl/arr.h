@@ -1,10 +1,10 @@
+#pragma once
 #include "ceslimpl.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 // CESL (C Extended Standard Library) Dynamic Arrays
-
 struct I8Array {
     int8_t *data;
     int size;
@@ -28,7 +28,7 @@ ceslf(void pushI8Array(struct I8Array *t, int8_t i), {
 });
 ceslf(int8_t popI8Array(struct I8Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -37,7 +37,7 @@ ceslf(int8_t popI8Array(struct I8Array *t), {
 });
 ceslf(int8_t getI8Array(struct I8Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -45,7 +45,7 @@ ceslf(int8_t getI8Array(struct I8Array *t, int i), {
 });
 ceslf(void setI8Array(struct I8Array *t, int i, int8_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -58,7 +58,7 @@ ceslf(void delI8Array(struct I8Array *t), {
 });
 ceslf(int8_t removeI8Array(struct I8Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -115,7 +115,7 @@ ceslf(void pushU8Array(struct U8Array *t, uint8_t i), {
 });
 ceslf(uint8_t popU8Array(struct U8Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -124,7 +124,7 @@ ceslf(uint8_t popU8Array(struct U8Array *t), {
 });
 ceslf(uint8_t getU8Array(struct U8Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -132,7 +132,7 @@ ceslf(uint8_t getU8Array(struct U8Array *t, int i), {
 });
 ceslf(void setU8Array(struct U8Array *t, int i, uint8_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -145,7 +145,7 @@ ceslf(void delU8Array(struct U8Array *t), {
 });
 ceslf(uint8_t removeU8Array(struct U8Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 95, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 6, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -203,7 +203,7 @@ ceslf(void pushI16Array(struct I16Array *t, int16_t i), {
 });
 ceslf(int16_t popI16Array(struct I16Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -212,7 +212,7 @@ ceslf(int16_t popI16Array(struct I16Array *t), {
 });
 ceslf(int16_t getI16Array(struct I16Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -220,7 +220,7 @@ ceslf(int16_t getI16Array(struct I16Array *t, int i), {
 });
 ceslf(void setI16Array(struct I16Array *t, int i, int16_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -233,7 +233,7 @@ ceslf(void delI16Array(struct I16Array *t), {
 });
 ceslf(int16_t removeI16Array(struct I16Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -290,7 +290,7 @@ ceslf(void pushU16Array(struct U16Array *t, uint16_t i), {
 });
 ceslf(uint16_t popU16Array(struct U16Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -299,7 +299,7 @@ ceslf(uint16_t popU16Array(struct U16Array *t), {
 });
 ceslf(uint16_t getU16Array(struct U16Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -307,7 +307,7 @@ ceslf(uint16_t getU16Array(struct U16Array *t, int i), {
 });
 ceslf(void setU16Array(struct U16Array *t, int i, uint16_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -320,7 +320,7 @@ ceslf(void delU16Array(struct U16Array *t), {
 });
 ceslf(uint16_t removeU16Array(struct U16Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 96, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 7, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -378,7 +378,7 @@ ceslf(void pushI32Array(struct I32Array *t, int32_t i), {
 });
 ceslf(int32_t popI32Array(struct I32Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -387,7 +387,7 @@ ceslf(int32_t popI32Array(struct I32Array *t), {
 });
 ceslf(int32_t getI32Array(struct I32Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -395,7 +395,7 @@ ceslf(int32_t getI32Array(struct I32Array *t, int i), {
 });
 ceslf(void setI32Array(struct I32Array *t, int i, int32_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -408,7 +408,7 @@ ceslf(void delI32Array(struct I32Array *t), {
 });
 ceslf(int32_t removeI32Array(struct I32Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -465,7 +465,7 @@ ceslf(void pushU32Array(struct U32Array *t, uint32_t i), {
 });
 ceslf(uint32_t popU32Array(struct U32Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -474,7 +474,7 @@ ceslf(uint32_t popU32Array(struct U32Array *t), {
 });
 ceslf(uint32_t getU32Array(struct U32Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -482,7 +482,7 @@ ceslf(uint32_t getU32Array(struct U32Array *t, int i), {
 });
 ceslf(void setU32Array(struct U32Array *t, int i, uint32_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -495,7 +495,7 @@ ceslf(void delU32Array(struct U32Array *t), {
 });
 ceslf(uint32_t removeU32Array(struct U32Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 97, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 8, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -553,7 +553,7 @@ ceslf(void pushI64Array(struct I64Array *t, int64_t i), {
 });
 ceslf(int64_t popI64Array(struct I64Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -562,7 +562,7 @@ ceslf(int64_t popI64Array(struct I64Array *t), {
 });
 ceslf(int64_t getI64Array(struct I64Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -570,7 +570,7 @@ ceslf(int64_t getI64Array(struct I64Array *t, int i), {
 });
 ceslf(void setI64Array(struct I64Array *t, int i, int64_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -583,7 +583,7 @@ ceslf(void delI64Array(struct I64Array *t), {
 });
 ceslf(int64_t removeI64Array(struct I64Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -640,7 +640,7 @@ ceslf(void pushU64Array(struct U64Array *t, uint64_t i), {
 });
 ceslf(uint64_t popU64Array(struct U64Array *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -649,7 +649,7 @@ ceslf(uint64_t popU64Array(struct U64Array *t), {
 });
 ceslf(uint64_t getU64Array(struct U64Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -657,7 +657,7 @@ ceslf(uint64_t getU64Array(struct U64Array *t, int i), {
 });
 ceslf(void setU64Array(struct U64Array *t, int i, uint64_t v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -670,7 +670,7 @@ ceslf(void delU64Array(struct U64Array *t), {
 });
 ceslf(uint64_t removeU64Array(struct U64Array *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 98, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 9, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -729,7 +729,7 @@ ceslf(void pushCharArray(struct CharArray *t, char i), {
 });
 ceslf(char popCharArray(struct CharArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -738,7 +738,7 @@ ceslf(char popCharArray(struct CharArray *t), {
 });
 ceslf(char getCharArray(struct CharArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -746,7 +746,7 @@ ceslf(char getCharArray(struct CharArray *t, int i), {
 });
 ceslf(void setCharArray(struct CharArray *t, int i, char v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -759,7 +759,7 @@ ceslf(void delCharArray(struct CharArray *t), {
 });
 ceslf(char removeCharArray(struct CharArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -817,7 +817,7 @@ ceslf(void pushUCharArray(struct UCharArray *t, unsigned char i), {
 });
 ceslf(unsigned char popUCharArray(struct UCharArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -826,7 +826,7 @@ ceslf(unsigned char popUCharArray(struct UCharArray *t), {
 });
 ceslf(unsigned char getUCharArray(struct UCharArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -834,7 +834,7 @@ ceslf(unsigned char getUCharArray(struct UCharArray *t, int i), {
 });
 ceslf(void setUCharArray(struct UCharArray *t, int i, unsigned char v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -847,7 +847,7 @@ ceslf(void delUCharArray(struct UCharArray *t), {
 });
 ceslf(unsigned char removeUCharArray(struct UCharArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 104, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 15, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -906,7 +906,7 @@ ceslf(void pushShortArray(struct ShortArray *t, short i), {
 });
 ceslf(short popShortArray(struct ShortArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -915,7 +915,7 @@ ceslf(short popShortArray(struct ShortArray *t), {
 });
 ceslf(short getShortArray(struct ShortArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -923,7 +923,7 @@ ceslf(short getShortArray(struct ShortArray *t, int i), {
 });
 ceslf(void setShortArray(struct ShortArray *t, int i, short v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -936,7 +936,7 @@ ceslf(void delShortArray(struct ShortArray *t), {
 });
 ceslf(short removeShortArray(struct ShortArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -995,7 +995,7 @@ ceslf(void pushUShortArray(struct UShortArray *t, unsigned short i), {
 });
 ceslf(unsigned short popUShortArray(struct UShortArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1004,7 +1004,7 @@ ceslf(unsigned short popUShortArray(struct UShortArray *t), {
 });
 ceslf(unsigned short getUShortArray(struct UShortArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1012,7 +1012,7 @@ ceslf(unsigned short getUShortArray(struct UShortArray *t, int i), {
 });
 ceslf(void setUShortArray(struct UShortArray *t, int i, unsigned short v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1025,7 +1025,7 @@ ceslf(void delUShortArray(struct UShortArray *t), {
 });
 ceslf(unsigned short removeUShortArray(struct UShortArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 105, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 16, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1084,7 +1084,7 @@ ceslf(void pushIntArray(struct IntArray *t, int i), {
 });
 ceslf(int popIntArray(struct IntArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1093,7 +1093,7 @@ ceslf(int popIntArray(struct IntArray *t), {
 });
 ceslf(int getIntArray(struct IntArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1101,7 +1101,7 @@ ceslf(int getIntArray(struct IntArray *t, int i), {
 });
 ceslf(void setIntArray(struct IntArray *t, int i, int v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1114,7 +1114,7 @@ ceslf(void delIntArray(struct IntArray *t), {
 });
 ceslf(int removeIntArray(struct IntArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1172,7 +1172,7 @@ ceslf(void pushUIntArray(struct UIntArray *t, unsigned int i), {
 });
 ceslf(unsigned int popUIntArray(struct UIntArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1181,7 +1181,7 @@ ceslf(unsigned int popUIntArray(struct UIntArray *t), {
 });
 ceslf(unsigned int getUIntArray(struct UIntArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1189,7 +1189,7 @@ ceslf(unsigned int getUIntArray(struct UIntArray *t, int i), {
 });
 ceslf(void setUIntArray(struct UIntArray *t, int i, unsigned int v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1202,7 +1202,7 @@ ceslf(void delUIntArray(struct UIntArray *t), {
 });
 ceslf(unsigned int removeUIntArray(struct UIntArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 106, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 17, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1260,7 +1260,7 @@ ceslf(void pushLongArray(struct LongArray *t, long i), {
 });
 ceslf(long popLongArray(struct LongArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1269,7 +1269,7 @@ ceslf(long popLongArray(struct LongArray *t), {
 });
 ceslf(long getLongArray(struct LongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1277,7 +1277,7 @@ ceslf(long getLongArray(struct LongArray *t, int i), {
 });
 ceslf(void setLongArray(struct LongArray *t, int i, long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1290,7 +1290,7 @@ ceslf(void delLongArray(struct LongArray *t), {
 });
 ceslf(long removeLongArray(struct LongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1348,7 +1348,7 @@ ceslf(void pushULongArray(struct ULongArray *t, unsigned long i), {
 });
 ceslf(unsigned long popULongArray(struct ULongArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1357,7 +1357,7 @@ ceslf(unsigned long popULongArray(struct ULongArray *t), {
 });
 ceslf(unsigned long getULongArray(struct ULongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1365,7 +1365,7 @@ ceslf(unsigned long getULongArray(struct ULongArray *t, int i), {
 });
 ceslf(void setULongArray(struct ULongArray *t, int i, unsigned long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1378,7 +1378,7 @@ ceslf(void delULongArray(struct ULongArray *t), {
 });
 ceslf(unsigned long removeULongArray(struct ULongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 107, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 18, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1438,7 +1438,7 @@ ceslf(void pushLongLongArray(struct LongLongArray *t, long long i), {
 });
 ceslf(long long popLongLongArray(struct LongLongArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1447,7 +1447,7 @@ ceslf(long long popLongLongArray(struct LongLongArray *t), {
 });
 ceslf(long long getLongLongArray(struct LongLongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1455,7 +1455,7 @@ ceslf(long long getLongLongArray(struct LongLongArray *t, int i), {
 });
 ceslf(void setLongLongArray(struct LongLongArray *t, int i, long long v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1468,7 +1468,7 @@ ceslf(void delLongLongArray(struct LongLongArray *t), {
 });
 ceslf(long long removeLongLongArray(struct LongLongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1527,7 +1527,7 @@ ceslf(void pushULongLongArray(struct ULongLongArray *t, unsigned long long i), {
 });
 ceslf(unsigned long long popULongLongArray(struct ULongLongArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1536,7 +1536,7 @@ ceslf(unsigned long long popULongLongArray(struct ULongLongArray *t), {
 });
 ceslf(unsigned long long getULongLongArray(struct ULongLongArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1546,7 +1546,7 @@ ceslf(void setULongLongArray(struct ULongLongArray *t, int i,
                              unsigned long long v),
       {
           if (i < 0 || i >= t->size) {
-              printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+              printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                      "Index out of bounds!");
               ;
           }
@@ -1560,7 +1560,7 @@ ceslf(void delULongLongArray(struct ULongLongArray *t), {
 ceslf(unsigned long long removeULongLongArray(struct ULongLongArray *t, int i),
       {
           if (i < 0 || i >= t->size) {
-              printf("ERROR (line %d in '%s'): %s\n", 108, "arr.h",
+              printf("ERROR (line %d in '%s'): %s\n", 19, "arr.h",
                      "Index out of bounds!");
               ;
           }
@@ -1620,7 +1620,7 @@ ceslf(void pushFloatArray(struct FloatArray *t, float i), {
 });
 ceslf(float popFloatArray(struct FloatArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 21, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1629,7 +1629,7 @@ ceslf(float popFloatArray(struct FloatArray *t), {
 });
 ceslf(float getFloatArray(struct FloatArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 21, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1637,7 +1637,7 @@ ceslf(float getFloatArray(struct FloatArray *t, int i), {
 });
 ceslf(void setFloatArray(struct FloatArray *t, int i, float v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 21, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1650,7 +1650,7 @@ ceslf(void delFloatArray(struct FloatArray *t), {
 });
 ceslf(float removeFloatArray(struct FloatArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 110, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 21, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1708,7 +1708,7 @@ ceslf(void pushDoubleArray(struct DoubleArray *t, double i), {
 });
 ceslf(double popDoubleArray(struct DoubleArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 22, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1717,7 +1717,7 @@ ceslf(double popDoubleArray(struct DoubleArray *t), {
 });
 ceslf(double getDoubleArray(struct DoubleArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 22, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1725,7 +1725,7 @@ ceslf(double getDoubleArray(struct DoubleArray *t, int i), {
 });
 ceslf(void setDoubleArray(struct DoubleArray *t, int i, double v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 22, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1738,7 +1738,7 @@ ceslf(void delDoubleArray(struct DoubleArray *t), {
 });
 ceslf(double removeDoubleArray(struct DoubleArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 111, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 22, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1797,7 +1797,7 @@ ceslf(void pushLongDoubleArray(struct LongDoubleArray *t, long double i), {
 });
 ceslf(long double popLongDoubleArray(struct LongDoubleArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 23, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1806,7 +1806,7 @@ ceslf(long double popLongDoubleArray(struct LongDoubleArray *t), {
 });
 ceslf(long double getLongDoubleArray(struct LongDoubleArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 23, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1815,7 +1815,7 @@ ceslf(long double getLongDoubleArray(struct LongDoubleArray *t, int i), {
 ceslf(void setLongDoubleArray(struct LongDoubleArray *t, int i, long double v),
       {
           if (i < 0 || i >= t->size) {
-              printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
+              printf("ERROR (line %d in '%s'): %s\n", 23, "arr.h",
                      "Index out of bounds!");
               ;
           }
@@ -1828,7 +1828,7 @@ ceslf(void delLongDoubleArray(struct LongDoubleArray *t), {
 });
 ceslf(long double removeLongDoubleArray(struct LongDoubleArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 112, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 23, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1887,7 +1887,7 @@ ceslf(void pushBoolArray(struct BoolArray *t, bool i), {
 });
 ceslf(bool popBoolArray(struct BoolArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 25, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1896,7 +1896,7 @@ ceslf(bool popBoolArray(struct BoolArray *t), {
 });
 ceslf(bool getBoolArray(struct BoolArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 25, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1904,7 +1904,7 @@ ceslf(bool getBoolArray(struct BoolArray *t, int i), {
 });
 ceslf(void setBoolArray(struct BoolArray *t, int i, bool v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 25, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1917,7 +1917,7 @@ ceslf(void delBoolArray(struct BoolArray *t), {
 });
 ceslf(bool removeBoolArray(struct BoolArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 114, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 25, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1975,7 +1975,7 @@ ceslf(void pushStringArray(struct StringArray *t, char *i), {
 });
 ceslf(char *popStringArray(struct StringArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 27, "arr.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -1984,7 +1984,7 @@ ceslf(char *popStringArray(struct StringArray *t), {
 });
 ceslf(char *getStringArray(struct StringArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 27, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -1992,7 +1992,7 @@ ceslf(char *getStringArray(struct StringArray *t, int i), {
 });
 ceslf(void setStringArray(struct StringArray *t, int i, char *v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 27, "arr.h",
                "Index out of bounds!");
         ;
     }
@@ -2005,7 +2005,7 @@ ceslf(void delStringArray(struct StringArray *t), {
 });
 ceslf(char *removeStringArray(struct StringArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 116, "arr.h",
+        printf("ERROR (line %d in '%s'): %s\n", 27, "arr.h",
                "Index out of bounds!");
         ;
     }
