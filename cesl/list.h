@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+// CESL (C Extended Standard Library) List Encapsulation
+
 struct I8List {
     int8_t *data;
     int len;
@@ -9,7 +11,7 @@ struct U8List {
     uint8_t *data;
     int len;
 };
-;
+; // I8List = int8_t, U8List = uint8_t
 struct I16List {
     int16_t *data;
     int len;
@@ -64,7 +66,7 @@ struct UIntList {
     unsigned int *data;
     int len;
 };
-;
+; // IntList = int, UIntList = unsigned int
 struct LongList {
     long *data;
     int len;

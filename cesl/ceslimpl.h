@@ -1,5 +1,10 @@
+// #define ceslf(type, name, args, body)
+
+// if IMPL is defined, then we are compiling the implementation
+// else we are compiling the interface
+
 #ifdef CESL_IMPL
-#define ceslf(type, name, args, body) type name args body
+#define ceslf(head, body) head body
 #else
-#define ceslf(type, name, args, body) type name args;
+#define ceslf(head, body) head;
 #endif
