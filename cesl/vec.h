@@ -1162,4 +1162,731 @@ ceslf(void printVec3(struct Vec3 a), {
 });
 ;
 
+struct Vec4i {
+    int x, y, z, w;
+    struct Vec4i (*add)(struct Vec4i, struct Vec4i);
+    struct Vec4i (*addv)(struct Vec4i, int);
+    struct Vec4i (*sub)(struct Vec4i, struct Vec4i);
+    struct Vec4i (*subv)(struct Vec4i, int);
+    struct Vec4i (*mul)(struct Vec4i, struct Vec4i);
+    struct Vec4i (*mulv)(struct Vec4i, int);
+    struct Vec4i (*div)(struct Vec4i, struct Vec4i);
+    struct Vec4i (*divv)(struct Vec4i, int);
+    int (*len)(struct Vec4i);
+    char *(*str)(struct Vec4i);
+    struct Vec4i (*norm)(struct Vec4i);
+    struct Vec4i (*cross)(struct Vec4i, struct Vec4i);
+    int (*dot)(struct Vec4i, struct Vec4i);
+};
+struct Vec4i newVec4i();
+;
+ceslf(struct Vec4i addVec4i(struct Vec4i a, struct Vec4i b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x + b.x;
+        v.y = a.y + b.y;
+        v.z = a.z + b.z;
+        v.w = a.w + b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i addvVec4i(struct Vec4i a, int b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x + b;
+        v.y = a.y + b;
+        v.z = a.z + b;
+        v.w = a.w + b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i subVec4i(struct Vec4i a, struct Vec4i b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x - b.x;
+        v.y = a.y - b.y;
+        v.z = a.z - b.z;
+        v.w = a.w - b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i subvVec4i(struct Vec4i a, int b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x - b;
+        v.y = a.y - b;
+        v.z = a.z - b;
+        v.w = a.w - b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i mulVec4i(struct Vec4i a, struct Vec4i b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x * b.x;
+        v.y = a.y * b.y;
+        v.z = a.z * b.z;
+        v.w = a.w * b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i mulvVec4i(struct Vec4i a, int b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x * b;
+        v.y = a.y * b;
+        v.z = a.z * b;
+        v.w = a.w * b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i divVec4i(struct Vec4i a, struct Vec4i b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x / b.x;
+        v.y = a.y / b.y;
+        v.z = a.z / b.z;
+        v.w = a.w / b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4i divvVec4i(struct Vec4i a, int b), {
+    struct Vec4i v = newVec4i();
+    {
+        v.x = a.x / b;
+        v.y = a.y / b;
+        v.z = a.z / b;
+        v.w = a.w / b;
+    };
+    return v;
+});
+;
+;
+ceslf(int lenVec4i(struct Vec4i v), { return v.x + v.y + v.z + v.w; });
+ceslf(char *strVec4i(struct Vec4i v), {
+    int length = snprintf(NULL, 0,
+                          "int"
+                          "("
+                          "%d"
+                          ", "
+                          "%d"
+                          ", "
+                          "%d"
+                          ", "
+                          "%d"
+                          ")",
+                          v.x, v.y, v.z, v.w);
+    char *str = (char *)malloc(sizeof(char) * (length + 1));
+    snprintf(str, length + 1,
+             "int"
+             "("
+             "%d"
+             ", "
+             "%d"
+             ", "
+             "%d"
+             ", "
+             "%d"
+             ")",
+             v.x, v.y, v.z, v.w);
+    return str;
+});
+;
+ceslf(struct Vec4i normVec4i(struct Vec4i v), { return v.divv(v, v.len(v)); });
+;
+ceslf(int dotVec4i(struct Vec4i a, struct Vec4i b),
+      { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; });
+ceslf(struct Vec4i crossVec4i(struct Vec4i a, struct Vec4i b), {
+    struct Vec4i v = newVec4i();
+    v.x = a.y * b.z - a.z * b.y;
+    v.y = a.z * b.x - a.x * b.z;
+    v.z = a.x * b.y - a.y * b.x;
+    v.w = 0;
+    return v;
+});
+ceslf(struct Vec4i newVec4i(), {
+    struct Vec4i self;
+    {
+        self.x = 0;
+        self.y = 0;
+        self.z = 0;
+        self.w = 0;
+    };
+    self.add = &addVec4i;
+    self.addv = &addvVec4i;
+    self.sub = &subVec4i;
+    self.subv = &subvVec4i;
+    self.mul = &mulVec4i;
+    self.mulv = &mulvVec4i;
+    self.div = &divVec4i;
+    self.divv = &divvVec4i;
+    self.len = &lenVec4i;
+    self.str = &strVec4i;
+    self.norm = &normVec4i;
+    self.cross = &crossVec4i;
+    self.dot = &dotVec4i;
+    return self;
+});
+;
+ceslf(struct Vec4i initwVec4i(int x, int y, int z, int w), {
+    struct Vec4i self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = w;
+    };
+    self.add = &addVec4i;
+    self.addv = &addvVec4i;
+    self.sub = &subVec4i;
+    self.subv = &subvVec4i;
+    self.mul = &mulVec4i;
+    self.mulv = &mulvVec4i;
+    self.div = &divVec4i;
+    self.divv = &divvVec4i;
+    self.len = &lenVec4i;
+    self.str = &strVec4i;
+    self.norm = &normVec4i;
+    self.cross = &crossVec4i;
+    self.dot = &dotVec4i;
+    return self;
+});
+;
+ceslf(struct Vec4i initVec4i(int x, int y, int z), {
+    struct Vec4i self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = 0;
+    };
+    self.add = &addVec4i;
+    self.addv = &addvVec4i;
+    self.sub = &subVec4i;
+    self.subv = &subvVec4i;
+    self.mul = &mulVec4i;
+    self.mulv = &mulvVec4i;
+    self.div = &divVec4i;
+    self.divv = &divvVec4i;
+    self.len = &lenVec4i;
+    self.str = &strVec4i;
+    self.norm = &normVec4i;
+    self.cross = &crossVec4i;
+    self.dot = &dotVec4i;
+    return self;
+});
+;
+ceslf(void printVec4i(struct Vec4i a), {
+    printf("int"
+           "("
+           "%d"
+           ", "
+           "%d"
+           ", "
+           "%d"
+           ", "
+           "%d"
+           ")",
+           a.x, a.y, a.z, a.w);
+});
+;
+struct Vec4f {
+    float x, y, z, w;
+    struct Vec4f (*add)(struct Vec4f, struct Vec4f);
+    struct Vec4f (*addv)(struct Vec4f, float);
+    struct Vec4f (*sub)(struct Vec4f, struct Vec4f);
+    struct Vec4f (*subv)(struct Vec4f, float);
+    struct Vec4f (*mul)(struct Vec4f, struct Vec4f);
+    struct Vec4f (*mulv)(struct Vec4f, float);
+    struct Vec4f (*div)(struct Vec4f, struct Vec4f);
+    struct Vec4f (*divv)(struct Vec4f, float);
+    float (*len)(struct Vec4f);
+    char *(*str)(struct Vec4f);
+    struct Vec4f (*norm)(struct Vec4f);
+    struct Vec4f (*cross)(struct Vec4f, struct Vec4f);
+    float (*dot)(struct Vec4f, struct Vec4f);
+};
+struct Vec4f newVec4f();
+;
+ceslf(struct Vec4f addVec4f(struct Vec4f a, struct Vec4f b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x + b.x;
+        v.y = a.y + b.y;
+        v.z = a.z + b.z;
+        v.w = a.w + b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f addvVec4f(struct Vec4f a, float b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x + b;
+        v.y = a.y + b;
+        v.z = a.z + b;
+        v.w = a.w + b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f subVec4f(struct Vec4f a, struct Vec4f b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x - b.x;
+        v.y = a.y - b.y;
+        v.z = a.z - b.z;
+        v.w = a.w - b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f subvVec4f(struct Vec4f a, float b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x - b;
+        v.y = a.y - b;
+        v.z = a.z - b;
+        v.w = a.w - b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f mulVec4f(struct Vec4f a, struct Vec4f b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x * b.x;
+        v.y = a.y * b.y;
+        v.z = a.z * b.z;
+        v.w = a.w * b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f mulvVec4f(struct Vec4f a, float b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x * b;
+        v.y = a.y * b;
+        v.z = a.z * b;
+        v.w = a.w * b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f divVec4f(struct Vec4f a, struct Vec4f b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x / b.x;
+        v.y = a.y / b.y;
+        v.z = a.z / b.z;
+        v.w = a.w / b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4f divvVec4f(struct Vec4f a, float b), {
+    struct Vec4f v = newVec4f();
+    {
+        v.x = a.x / b;
+        v.y = a.y / b;
+        v.z = a.z / b;
+        v.w = a.w / b;
+    };
+    return v;
+});
+;
+;
+ceslf(float lenVec4f(struct Vec4f v), { return v.x + v.y + v.z + v.w; });
+ceslf(char *strVec4f(struct Vec4f v), {
+    int length = snprintf(NULL, 0,
+                          "float"
+                          "("
+                          "%f"
+                          ", "
+                          "%f"
+                          ", "
+                          "%f"
+                          ", "
+                          "%f"
+                          ")",
+                          v.x, v.y, v.z, v.w);
+    char *str = (char *)malloc(sizeof(char) * (length + 1));
+    snprintf(str, length + 1,
+             "float"
+             "("
+             "%f"
+             ", "
+             "%f"
+             ", "
+             "%f"
+             ", "
+             "%f"
+             ")",
+             v.x, v.y, v.z, v.w);
+    return str;
+});
+;
+ceslf(struct Vec4f normVec4f(struct Vec4f v), { return v.divv(v, v.len(v)); });
+;
+ceslf(float dotVec4f(struct Vec4f a, struct Vec4f b),
+      { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; });
+ceslf(struct Vec4f crossVec4f(struct Vec4f a, struct Vec4f b), {
+    struct Vec4f v = newVec4f();
+    v.x = a.y * b.z - a.z * b.y;
+    v.y = a.z * b.x - a.x * b.z;
+    v.z = a.x * b.y - a.y * b.x;
+    v.w = 0;
+    return v;
+});
+ceslf(struct Vec4f newVec4f(), {
+    struct Vec4f self;
+    {
+        self.x = 0;
+        self.y = 0;
+        self.z = 0;
+        self.w = 0;
+    };
+    self.add = &addVec4f;
+    self.addv = &addvVec4f;
+    self.sub = &subVec4f;
+    self.subv = &subvVec4f;
+    self.mul = &mulVec4f;
+    self.mulv = &mulvVec4f;
+    self.div = &divVec4f;
+    self.divv = &divvVec4f;
+    self.len = &lenVec4f;
+    self.str = &strVec4f;
+    self.norm = &normVec4f;
+    self.cross = &crossVec4f;
+    self.dot = &dotVec4f;
+    return self;
+});
+;
+ceslf(struct Vec4f initwVec4f(float x, float y, float z, float w), {
+    struct Vec4f self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = w;
+    };
+    self.add = &addVec4f;
+    self.addv = &addvVec4f;
+    self.sub = &subVec4f;
+    self.subv = &subvVec4f;
+    self.mul = &mulVec4f;
+    self.mulv = &mulvVec4f;
+    self.div = &divVec4f;
+    self.divv = &divvVec4f;
+    self.len = &lenVec4f;
+    self.str = &strVec4f;
+    self.norm = &normVec4f;
+    self.cross = &crossVec4f;
+    self.dot = &dotVec4f;
+    return self;
+});
+;
+ceslf(struct Vec4f initVec4f(float x, float y, float z), {
+    struct Vec4f self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = 0;
+    };
+    self.add = &addVec4f;
+    self.addv = &addvVec4f;
+    self.sub = &subVec4f;
+    self.subv = &subvVec4f;
+    self.mul = &mulVec4f;
+    self.mulv = &mulvVec4f;
+    self.div = &divVec4f;
+    self.divv = &divvVec4f;
+    self.len = &lenVec4f;
+    self.str = &strVec4f;
+    self.norm = &normVec4f;
+    self.cross = &crossVec4f;
+    self.dot = &dotVec4f;
+    return self;
+});
+;
+ceslf(void printVec4f(struct Vec4f a), {
+    printf("float"
+           "("
+           "%f"
+           ", "
+           "%f"
+           ", "
+           "%f"
+           ", "
+           "%f"
+           ")",
+           a.x, a.y, a.z, a.w);
+});
+;
+struct Vec4 {
+    double x, y, z, w;
+    struct Vec4 (*add)(struct Vec4, struct Vec4);
+    struct Vec4 (*addv)(struct Vec4, double);
+    struct Vec4 (*sub)(struct Vec4, struct Vec4);
+    struct Vec4 (*subv)(struct Vec4, double);
+    struct Vec4 (*mul)(struct Vec4, struct Vec4);
+    struct Vec4 (*mulv)(struct Vec4, double);
+    struct Vec4 (*div)(struct Vec4, struct Vec4);
+    struct Vec4 (*divv)(struct Vec4, double);
+    double (*len)(struct Vec4);
+    char *(*str)(struct Vec4);
+    struct Vec4 (*norm)(struct Vec4);
+    struct Vec4 (*cross)(struct Vec4, struct Vec4);
+    double (*dot)(struct Vec4, struct Vec4);
+};
+struct Vec4 newVec4();
+;
+ceslf(struct Vec4 addVec4(struct Vec4 a, struct Vec4 b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x + b.x;
+        v.y = a.y + b.y;
+        v.z = a.z + b.z;
+        v.w = a.w + b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 addvVec4(struct Vec4 a, double b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x + b;
+        v.y = a.y + b;
+        v.z = a.z + b;
+        v.w = a.w + b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 subVec4(struct Vec4 a, struct Vec4 b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x - b.x;
+        v.y = a.y - b.y;
+        v.z = a.z - b.z;
+        v.w = a.w - b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 subvVec4(struct Vec4 a, double b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x - b;
+        v.y = a.y - b;
+        v.z = a.z - b;
+        v.w = a.w - b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 mulVec4(struct Vec4 a, struct Vec4 b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x * b.x;
+        v.y = a.y * b.y;
+        v.z = a.z * b.z;
+        v.w = a.w * b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 mulvVec4(struct Vec4 a, double b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x * b;
+        v.y = a.y * b;
+        v.z = a.z * b;
+        v.w = a.w * b;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 divVec4(struct Vec4 a, struct Vec4 b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x / b.x;
+        v.y = a.y / b.y;
+        v.z = a.z / b.z;
+        v.w = a.w / b.w;
+    };
+    return v;
+});
+;
+;
+ceslf(struct Vec4 divvVec4(struct Vec4 a, double b), {
+    struct Vec4 v = newVec4();
+    {
+        v.x = a.x / b;
+        v.y = a.y / b;
+        v.z = a.z / b;
+        v.w = a.w / b;
+    };
+    return v;
+});
+;
+;
+ceslf(double lenVec4(struct Vec4 v), { return v.x + v.y + v.z + v.w; });
+ceslf(char *strVec4(struct Vec4 v), {
+    int length = snprintf(NULL, 0,
+                          "double"
+                          "("
+                          "%lf"
+                          ", "
+                          "%lf"
+                          ", "
+                          "%lf"
+                          ", "
+                          "%lf"
+                          ")",
+                          v.x, v.y, v.z, v.w);
+    char *str = (char *)malloc(sizeof(char) * (length + 1));
+    snprintf(str, length + 1,
+             "double"
+             "("
+             "%lf"
+             ", "
+             "%lf"
+             ", "
+             "%lf"
+             ", "
+             "%lf"
+             ")",
+             v.x, v.y, v.z, v.w);
+    return str;
+});
+;
+ceslf(struct Vec4 normVec4(struct Vec4 v), { return v.divv(v, v.len(v)); });
+;
+ceslf(double dotVec4(struct Vec4 a, struct Vec4 b),
+      { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; });
+ceslf(struct Vec4 crossVec4(struct Vec4 a, struct Vec4 b), {
+    struct Vec4 v = newVec4();
+    v.x = a.y * b.z - a.z * b.y;
+    v.y = a.z * b.x - a.x * b.z;
+    v.z = a.x * b.y - a.y * b.x;
+    v.w = 0;
+    return v;
+});
+ceslf(struct Vec4 newVec4(), {
+    struct Vec4 self;
+    {
+        self.x = 0;
+        self.y = 0;
+        self.z = 0;
+        self.w = 0;
+    };
+    self.add = &addVec4;
+    self.addv = &addvVec4;
+    self.sub = &subVec4;
+    self.subv = &subvVec4;
+    self.mul = &mulVec4;
+    self.mulv = &mulvVec4;
+    self.div = &divVec4;
+    self.divv = &divvVec4;
+    self.len = &lenVec4;
+    self.str = &strVec4;
+    self.norm = &normVec4;
+    self.cross = &crossVec4;
+    self.dot = &dotVec4;
+    return self;
+});
+;
+ceslf(struct Vec4 initwVec4(double x, double y, double z, double w), {
+    struct Vec4 self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = w;
+    };
+    self.add = &addVec4;
+    self.addv = &addvVec4;
+    self.sub = &subVec4;
+    self.subv = &subvVec4;
+    self.mul = &mulVec4;
+    self.mulv = &mulvVec4;
+    self.div = &divVec4;
+    self.divv = &divvVec4;
+    self.len = &lenVec4;
+    self.str = &strVec4;
+    self.norm = &normVec4;
+    self.cross = &crossVec4;
+    self.dot = &dotVec4;
+    return self;
+});
+;
+ceslf(struct Vec4 initVec4(double x, double y, double z), {
+    struct Vec4 self;
+    {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.w = 0;
+    };
+    self.add = &addVec4;
+    self.addv = &addvVec4;
+    self.sub = &subVec4;
+    self.subv = &subvVec4;
+    self.mul = &mulVec4;
+    self.mulv = &mulvVec4;
+    self.div = &divVec4;
+    self.divv = &divvVec4;
+    self.len = &lenVec4;
+    self.str = &strVec4;
+    self.norm = &normVec4;
+    self.cross = &crossVec4;
+    self.dot = &dotVec4;
+    return self;
+});
+;
+ceslf(void printVec4(struct Vec4 a), {
+    printf("double"
+           "("
+           "%lf"
+           ", "
+           "%lf"
+           ", "
+           "%lf"
+           ", "
+           "%lf"
+           ")",
+           a.x, a.y, a.z, a.w);
+});
+;
+
 // a + b = addVec3i(a, b) or a->add(a, b) or b->add(a, b)...
