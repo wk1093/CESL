@@ -425,11 +425,16 @@ ceslf(struct Mat4f lookAtMat4f(struct Vec3f eye, struct Vec3f center,
 
 ceslf(struct Mat4f newMat4f(), {
     struct Mat4f result;
-    float f[4][4] = {{1.0f, 0.0f, 0.0f, 0.0f},
-                     {0.0f, 1.0f, 0.0f, 0.0f},
-                     {0.0f, 0.0f, 1.0f, 0.0f},
-                     {0.0f, 0.0f, 0.0f, 1.0f}};
-    result.m = f;
+    // initialize 2d array
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (i == j) {
+                result.m[i][j] = 1.0f;
+            } else {
+                result.m[i][j] = 0.0f;
+            }
+        }
+    }
     // "member" functions
     result.add = &addMat4f;
     result.sub = &subMat4f;

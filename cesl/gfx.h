@@ -13456,6 +13456,8 @@ struct Renderer {
 ceslf(void drawRenderer(struct Renderer *self, struct Model *model), {
     // draw mesh
     glBindVertexArray(model->vao);
+    self->shader->use(self->shader);
+    self->texture->use(self->texture);
     glDrawElements(GL_TRIANGLES, model->mesh->indices->size, GL_UNSIGNED_INT,
                    0);
 });
