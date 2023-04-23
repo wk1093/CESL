@@ -13140,6 +13140,15 @@ struct Color {
     float a;
 };
 
+ceslf(struct Color newColor(float r, float g, float b), {
+    struct Color color;
+    color.r = r;
+    color.g = g;
+    color.b = b;
+    color.a = 1.0f;
+    return color;
+});
+
 struct Shader {
     unsigned int id;
     // "member" functions
@@ -13211,23 +13220,7 @@ ceslf(struct Shader *newShader(const char *vertSrc, const char *fragSrc), {
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
 
-    // check for errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        printf("Failed to link shaders: %s\n", infoLog);
-        exit(1);
-    }
-
     glAttachShader(shaderProgram, fragmentShader);
-
-    // check for errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        printf("Failed to link shaders: %s\n", infoLog);
-        exit(1);
-    }
 
     glLinkProgram(shaderProgram);
 
@@ -13324,6 +13317,17 @@ struct Vertex {
     struct Vec3f normal;
     struct Vec2f texCoords;
 };
+
+ceslf(struct Vertex newVertex(struct Vec3f position, struct Color color,
+                              struct Vec3f normal, struct Vec2f texCoords),
+      {
+          struct Vertex vertex;
+          vertex.position = position;
+          vertex.color = color;
+          vertex.normal = normal;
+          vertex.texCoords = texCoords;
+          return vertex;
+      });
 #include "ceslimpl.h"
 #include <stdbool.h>
 #include <stdint.h>
@@ -13353,7 +13357,7 @@ ceslf(void pushVertexArray(struct VertexArray *t, struct Vertex i), {
 });
 ceslf(struct Vertex popVertexArray(struct VertexArray *t), {
     if (t->size == 0) {
-        printf("ERROR (line %d in '%s'): %s\n", 218, "gfx.h",
+        printf("ERROR (line %d in '%s'): %s\n", 220, "gfx.h",
                "Cannot pop from an empty vector!");
         ;
     }
@@ -13362,7 +13366,7 @@ ceslf(struct Vertex popVertexArray(struct VertexArray *t), {
 });
 ceslf(struct Vertex getVertexArray(struct VertexArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 218, "gfx.h",
+        printf("ERROR (line %d in '%s'): %s\n", 220, "gfx.h",
                "Index out of bounds!");
         ;
     }
@@ -13370,7 +13374,7 @@ ceslf(struct Vertex getVertexArray(struct VertexArray *t, int i), {
 });
 ceslf(void setVertexArray(struct VertexArray *t, int i, struct Vertex v), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 218, "gfx.h",
+        printf("ERROR (line %d in '%s'): %s\n", 220, "gfx.h",
                "Index out of bounds!");
         ;
     }
@@ -13383,7 +13387,7 @@ ceslf(void delVertexArray(struct VertexArray *t), {
 });
 ceslf(struct Vertex removeVertexArray(struct VertexArray *t, int i), {
     if (i < 0 || i >= t->size) {
-        printf("ERROR (line %d in '%s'): %s\n", 218, "gfx.h",
+        printf("ERROR (line %d in '%s'): %s\n", 220, "gfx.h",
                "Index out of bounds!");
         ;
     }
@@ -13424,12 +13428,46 @@ struct Mesh {
     struct UIntArray *indices;
 };
 
-struct Mesh *newMesh() {
+ceslf(struct Mesh *newMesh(), {
     struct Mesh *mesh = malloc(sizeof(struct Mesh));
     mesh->vertices = newVertexArray();
     mesh->indices = newUIntArray();
     return mesh;
-}
+});
+
+ceslf(struct Mesh *square(), {
+    struct Mesh *mesh = newMesh();
+    struct VertexArray *vertices = mesh->vertices;
+    struct UIntArray *indices = mesh->indices;
+
+    // vertices
+    pushVertexArray(vertices, newVertex(newVec3f(-0.5f, -0.5f, 0.0f),
+                                        newColor(1.0f, 0.0f, 0.0f),
+                                        newVec3f(0.0f, 0.0f, 1.0f),
+                                        newVec2f(0.0f, 0.0f)));
+    pushVertexArray(vertices, newVertex(newVec3f(0.5f, -0.5f, 0.0f),
+                                        newColor(0.0f, 1.0f, 0.0f),
+                                        newVec3f(0.0f, 0.0f, 1.0f),
+                                        newVec2f(1.0f, 0.0f)));
+    pushVertexArray(vertices, newVertex(newVec3f(0.5f, 0.5f, 0.0f),
+                                        newColor(0.0f, 0.0f, 1.0f),
+                                        newVec3f(0.0f, 0.0f, 1.0f),
+                                        newVec2f(1.0f, 1.0f)));
+    pushVertexArray(vertices, newVertex(newVec3f(-0.5f, 0.5f, 0.0f),
+                                        newColor(1.0f, 1.0f, 1.0f),
+                                        newVec3f(0.0f, 0.0f, 1.0f),
+                                        newVec2f(0.0f, 1.0f)));
+
+    // indices
+    pushUIntArray(indices, 0);
+    pushUIntArray(indices, 1);
+    pushUIntArray(indices, 2);
+    pushUIntArray(indices, 2);
+    pushUIntArray(indices, 3);
+    pushUIntArray(indices, 0);
+
+    return mesh;
+});
 
 struct Model {
     struct Mesh *mesh;
@@ -13440,6 +13478,47 @@ struct Model {
     unsigned int vbo;
     unsigned int ebo;
 };
+
+ceslf(struct Model *newModel(struct Mesh *mesh), {
+    struct Model *model = malloc(sizeof(struct Model));
+    model->mesh = mesh;
+    model->position = newVec3f(0, 0, 0);
+    model->rotation = newVec3f(0, 0, 0);
+    model->scale = newVec3f(1, 1, 1);
+
+    // create vao
+    glGenVertexArrays(1, &model->vao);
+    glBindVertexArray(model->vao);
+
+    // create vbo
+    glGenBuffers(1, &model->vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, model->vbo);
+    glBufferData(GL_ARRAY_BUFFER, mesh->vertices->size * sizeof(struct Vertex),
+                 mesh->vertices->data, GL_STATIC_DRAW);
+
+    // create ebo
+    glGenBuffers(1, &model->ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                 mesh->indices->size * sizeof(unsigned int),
+                 mesh->indices->data, GL_STATIC_DRAW);
+
+    // set vertex attributes
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(struct Vertex),
+                          (void *)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(struct Vertex),
+                          (void *)offsetof(struct Vertex, color));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(struct Vertex),
+                          (void *)offsetof(struct Vertex, normal));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(struct Vertex),
+                          (void *)offsetof(struct Vertex, texCoords));
+    glEnableVertexAttribArray(3);
+
+    return model;
+});
 
 struct Renderer {
     struct Shader *shader;
@@ -13461,3 +13540,13 @@ ceslf(void drawRenderer(struct Renderer *self, struct Model *model), {
     glDrawElements(GL_TRIANGLES, model->mesh->indices->size, GL_UNSIGNED_INT,
                    0);
 });
+
+ceslf(struct Renderer *newRenderer(struct Shader *shader,
+                                   struct Texture *texture),
+      {
+          struct Renderer *renderer = malloc(sizeof(struct Renderer));
+          renderer->shader = shader;
+          renderer->texture = texture;
+          renderer->draw = &drawRenderer;
+          return renderer;
+      });
