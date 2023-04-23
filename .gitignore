@@ -3,3 +3,5 @@
 /core
 /src
 /main.c
+extract.bat
+**/oldlib/

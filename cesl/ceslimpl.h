@@ -5,6 +5,7 @@
 // else we are compiling the interface
 
 #ifdef CESL_IMPL
+#define STB_IMAGE_IMPLEMENTATION
 #define ceslf(head, body) head body
 #else
 #define ceslf(head, body) head;
